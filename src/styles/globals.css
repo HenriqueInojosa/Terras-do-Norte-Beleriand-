@@ -1,0 +1,310 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink-950: #0d0b09;
+  --color-ink-900: #14110e;
+  --color-ink-850: #1a1612;
+  --color-ink-800: #211c17;
+  --color-ink-700: #2c251e;
+  --color-line: #3d342a;
+  --color-fg: #eadfc6;
+  --color-muted: #a8987c;
+  --color-faint: #6f6353;
+
+  --color-gold-200: #f3e2ae;
+  --color-gold-300: #e6cd8c;
+  --color-gold-400: #d1b16a;
+  --color-gold-500: #b8923f;
+  --color-gold-700: #7a5e25;
+
+  --color-parch-50: #faf3e2;
+  --color-parch-100: #f3e7cc;
+  --color-parch-200: #e8d6ad;
+  --color-parch-300: #d6bf8f;
+  --color-parch-ink: #2e2116;
+  --color-parch-muted: #6b5640;
+
+  --color-forest-700: #22361f;
+  --color-forest-500: #46653a;
+  --color-forest-300: #8fae78;
+  --color-deep-700: #17293a;
+  --color-deep-500: #2b5470;
+  --color-deep-300: #7fa6c2;
+  --color-ember: #c0643a;
+
+  --font-display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-caps: 'Cinzel', 'Cormorant Garamond', serif;
+  --font-body: 'EB Garamond', Georgia, serif;
+  --font-map: 'IM Fell English', 'EB Garamond', serif;
+
+  --ease-elven: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+  --header-h: 64px;
+}
+
+@layer base {
+html,
+body {
+  background: var(--color-ink-950);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Textura de pedra escura + vinheta, comum a todas as páginas */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(60, 48, 34, 0.35), transparent 65%),
+    radial-gradient(ellipse at 50% 120%, rgba(0, 0, 0, 0.6), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .47 0 0 0 0 .36 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    var(--color-ink-950);
+}
+
+::selection {
+  background: rgba(209, 177, 106, 0.35);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scrollbar discreta */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-caps {
+    font-family: var(--font-caps);
+    letter-spacing: 0.14em;
+  }
+
+  /* Painel escuro com borda dourada fina */
+  .panel {
+    background: linear-gradient(180deg, rgba(33, 28, 23, 0.88), rgba(20, 17, 14, 0.92));
+    border: 1px solid rgba(184, 146, 63, 0.28);
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.4),
+      0 24px 60px -20px rgba(0, 0, 0, 0.75),
+      inset 0 1px 0 rgba(243, 226, 174, 0.06);
+    backdrop-filter: blur(14px) saturate(1.1);
+  }
+
+  /* Pergaminho: usado nos textos longos das fichas */
+  .parchment {
+    color: var(--color-parch-ink);
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(255, 250, 235, 0.7), transparent 60%),
+      radial-gradient(ellipse at 100% 100%, rgba(150, 110, 60, 0.25), transparent 55%),
+      var(--color-parch-100);
+    box-shadow:
+      inset 0 0 40px rgba(120, 85, 40, 0.25),
+      0 20px 50px -24px rgba(0, 0, 0, 0.8);
+  }
+
+  .rule-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(209, 177, 106, 0.55), transparent);
+  }
+
+  .entity-link {
+    color: var(--color-gold-300);
+    border-bottom: 1px solid rgba(209, 177, 106, 0.35);
+    transition:
+      color 0.25s var(--ease-elven),
+      border-color 0.25s var(--ease-elven);
+    cursor: pointer;
+  }
+  .entity-link:hover {
+    color: var(--color-gold-200);
+    border-color: var(--color-gold-300);
+  }
+  .parchment .entity-link {
+    color: #7a4a14;
+    border-color: rgba(122, 74, 20, 0.35);
+  }
+  .parchment .entity-link:hover {
+    color: #4d2c08;
+    border-color: #7a4a14;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid rgba(184, 146, 63, 0.35);
+    border-radius: 999px;
+    padding: 0.1rem 0.65rem;
+    font-family: var(--font-caps);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold-300);
+  }
+}
+
+/* ——— Camada interativa do mapa ——— */
+.map-layer .territorio {
+  fill: #d8b25e;
+  fill-opacity: 0;
+  stroke: #f1d690;
+  stroke-opacity: 0;
+  stroke-width: 0.6;
+  vector-effect: non-scaling-stroke;
+  cursor: pointer;
+  transition:
+    fill-opacity 0.45s var(--ease-elven),
+    stroke-opacity 0.45s var(--ease-elven),
+    stroke-width 0.45s var(--ease-elven);
+}
+.map-layer .territorio:hover,
+.map-layer .territorio.is-hover {
+  fill-opacity: 0.16;
+  stroke-opacity: 0.9;
+  stroke-width: 1.4;
+}
+.map-layer .territorio.is-related {
+  fill-opacity: 0.2;
+  stroke-opacity: 0.75;
+  stroke-width: 1.2;
+}
+.map-layer .territorio.is-selected {
+  fill-opacity: 0.28;
+  stroke-opacity: 1;
+  stroke-width: 2.2;
+  animation: territory-glow 2.8s ease-in-out infinite;
+}
+.map-layer .territorio.ponto {
+  fill-opacity: 0.08;
+  stroke-opacity: 0.6;
+  stroke-dasharray: 2 2;
+}
+.map-layer .territorio.is-veiled {
+  fill: #efe6cf;
+  fill-opacity: 0.55;
+  stroke-opacity: 0;
+  filter: url(#nevoa);
+  cursor: help;
+}
+.map-layer .territorio.is-veiled:hover {
+  fill-opacity: 0.7;
+}
+@keyframes territory-glow {
+  0%,
+  100% {
+    stroke: #f1d690;
+  }
+  50% {
+    stroke: #fff4cf;
+  }
+}
+
+/* Rótulos do mapa (classes vindas do SVG estilizado) */
+.map-labels text {
+  text-anchor: middle;
+  dominant-baseline: central;
+  paint-order: stroke;
+  stroke: #efe3c6;
+  stroke-width: 0.9px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  transition: opacity 0.5s var(--ease-elven);
+}
+.map-labels .reg { font-family: 'Cinzel', serif; font-weight: 600; fill: #3a2716; }
+.map-labels .reg.xl { font-size: 9.2px; letter-spacing: 4.2px; }
+.map-labels .reg.l { font-size: 6.6px; letter-spacing: 2.4px; }
+.map-labels .reg.m { font-size: 5.3px; letter-spacing: 1.6px; }
+.map-labels .reg.s { font-size: 4.2px; letter-spacing: 1.2px; }
+.map-labels .reg.xs { font-size: 3.6px; letter-spacing: 0.8px; }
+.map-labels .two .sub { font-family: 'IM Fell English', serif; font-style: italic; font-weight: 400; letter-spacing: 0.3px; font-size: 0.78em; }
+.map-labels .sea { font-family: 'Cinzel', serif; font-weight: 500; font-size: 15px; letter-spacing: 9px; fill: #e6c97a; stroke: none; opacity: 0.92; }
+.map-labels .frs { font-family: 'IM Fell English SC', serif; fill: #f3ead0; stroke: #1f3018; stroke-width: 1.1px; }
+.map-labels .frs.xl { font-size: 11px; letter-spacing: 4px; }
+.map-labels .frs.l { font-size: 10px; letter-spacing: 2.6px; }
+.map-labels .frs.s { font-size: 4.6px; letter-spacing: 0.4px; }
+.map-labels .doriath { fill: #f6e3a1; }
+.map-labels .mtn { font-family: 'IM Fell English', serif; font-style: italic; font-size: 4.8px; fill: #5e2416; letter-spacing: 0.3px; }
+.map-labels .mtn.big { font-family: 'Cinzel', serif; font-style: normal; font-weight: 700; font-size: 8px; letter-spacing: 5px; fill: #efe3c6; stroke: #1c1612; stroke-width: 1.2px; }
+.map-labels .mtn.big .sub { fill: #efe3c6; letter-spacing: 1px; }
+.map-labels .mtn.dark { font-size: 5.4px; fill: #f3d9b0; stroke: #2a0e08; stroke-width: 1px; }
+.map-labels .riv { font-family: 'IM Fell English', serif; font-style: italic; font-size: 4.2px; fill: #1d4563; letter-spacing: 0.3px; }
+.map-labels .riv.s { font-size: 3.8px; }
+.map-labels .wat { font-family: 'IM Fell English', serif; font-style: italic; font-size: 3.9px; fill: #1d4563; }
+.map-labels .city { font-family: 'IM Fell English SC', serif; font-size: 5.6px; fill: #24160c; letter-spacing: 0.3px; }
+.map-labels .city.evil { font-family: 'Cinzel', serif; font-weight: 700; font-size: 6.2px; letter-spacing: 2.5px; fill: #f2c9a0; stroke: #2a0e08; stroke-width: 1.2px; }
+.map-labels .minor { font-family: 'IM Fell English', serif; font-style: italic; font-size: 3.9px; fill: #3a2716; }
+.map-labels .titulo,
+.map-labels .subtitulo {
+  dominant-baseline: auto;
+}
+.map-labels .titulo { font-family: 'Cinzel Decorative', 'Cinzel', serif; font-weight: 900; font-size: 25px; letter-spacing: 7px; fill: url(#ouro); stroke: #2a1d10; stroke-width: 0.45px; }
+.map-labels .subtitulo { font-family: 'IM Fell English', serif; font-style: italic; font-size: 6.4px; fill: #3a2716; letter-spacing: 0.8px; stroke: none; }
+
+.map-labels .is-active {
+  fill: #6a3a0c;
+}
+.map-labels .city.evil.is-active {
+  fill: #ffd9b0;
+}
+
+/* Nível de detalhe por zoom: rótulos menores só aparecem de perto */
+.map-labels[data-lod='0'] .lod-1,
+.map-labels[data-lod='0'] .lod-2,
+.map-labels[data-lod='1'] .lod-2 {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.map-layer .territorio:focus {
+  outline: none;
+}
+.map-layer .territorio:focus-visible {
+  fill-opacity: 0.16;
+  stroke-opacity: 1;
+  stroke-width: 1.6;
+}
+
+/* React Flow no tema do Atlas */
+.relations-flow {
+  background: transparent !important;
+}
+.relations-flow .react-flow__controls {
+  border: 1px solid rgba(184, 146, 63, 0.3);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: none;
+}
+.relations-flow .react-flow__controls-button {
+  background: rgba(20, 17, 14, 0.85);
+  border-bottom: 1px solid rgba(184, 146, 63, 0.2);
+  fill: #d1b16a;
+}
+.relations-flow .react-flow__controls-button:hover {
+  background: rgba(184, 146, 63, 0.18);
+}
+.relations-flow .react-flow__node {
+  cursor: pointer;
+}
