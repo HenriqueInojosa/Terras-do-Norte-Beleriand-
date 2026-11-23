@@ -57,3 +57,6 @@ no personagem em `src/data/characters.ts`.
 
 Depois de editar `assets/map/beleriand-estilizado.svg`, rode `npm run map` para gerar de novo a arte e a camada
 interativa. Cada território é um elemento com o mesmo id usado em `territories.ts`.
+
+A arte é exibida como WebP (`public/maps/beleriand-base.webp` e a versão `@2x`, carregada só ao aproximar), não como SVG:
+os filtros do SVG deixavam o zoom lento. O passo de rasterização usa o Playwright com Chromium e o Pillow.
