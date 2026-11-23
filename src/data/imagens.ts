@@ -17,47 +17,47 @@ export interface Imagem {
 export const retratos: Partial<Record<CharacterId, Imagem>> = {
   maedhros: {
     src: '/portraits/maedhros.webp',
-    credito: { autor: 'Carmen Haberichter', licenca: 'Domínio público', fonte: 'https://commons.wikimedia.org/wiki/File:Yes%2C_I%27m_angry.jpg', obra: 'Yes, I\'m angry', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Maedhros.jpg', obra: 'Maedhros', alterada: true },
   },
   maglor: {
     src: '/portraits/maglor.webp',
-    credito: { autor: 'Carmen Haberichter', licenca: 'Domínio público', fonte: 'https://commons.wikimedia.org/wiki/File:Maglor%2C_the_minstrel.jpg', obra: 'Maglor, the minstrel', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Maglor.jpg', obra: 'Maglor', alterada: true },
   },
   celegorm: {
     src: '/portraits/celegorm.webp',
-    credito: { autor: 'Carmen Haberichter', licenca: 'Domínio público', fonte: 'https://commons.wikimedia.org/wiki/File:Celegorm.jpg', obra: 'Celegorm', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Celegorm.jpg', obra: 'Celegorm', alterada: true },
   },
   curufin: {
     src: '/portraits/curufin.webp',
-    credito: { autor: 'Carmen Haberichter', licenca: 'Domínio público', fonte: 'https://commons.wikimedia.org/wiki/File:Curufin.JPG', obra: 'Curufin', alterada: true },
+    credito: { autor: 'Elena Kukanova', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Elena_Kukanova_-_Curufin_sketch.jpg', obra: 'Curufin sketch', alterada: true },
   },
   caranthir: {
     src: '/portraits/caranthir.webp',
-    credito: { autor: 'Carmen Haberichter', licenca: 'Domínio público', fonte: 'https://commons.wikimedia.org/wiki/File:Just_practising.jpg', obra: 'Just practising', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Caranthir.jpg', obra: 'Caranthir', alterada: true },
   },
   fingolfin: {
     src: '/portraits/fingolfin.webp',
-    credito: { autor: 'Carmen Haberichter', licenca: 'Domínio público', fonte: 'https://commons.wikimedia.org/wiki/File:Measure_intension_more_forcefull_than_blows.jpg', obra: 'Measure intension more forcefull than blows', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Fingolfin.jpg', obra: 'Fingolfin', alterada: true },
   },
   feanor: {
     src: '/portraits/feanor.webp',
-    credito: { autor: 'Fëanor l\'immortel', licenca: 'CC BY-SA 4.0', licencaUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', fonte: 'https://commons.wikimedia.org/wiki/File:F%C3%ABanor.jpg', obra: 'Fëanor', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Feanor.jpg', obra: 'Feanor', alterada: true },
   },
   morgoth: {
     src: '/portraits/morgoth.webp',
-    credito: { autor: 'Outcast', licenca: 'CC BY-SA 3.0', licencaUrl: 'https://creativecommons.org/licenses/by-sa/3.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Morgoth_-_the_first_Dark_Lord.jpg', obra: 'Morgoth - the first Dark Lord', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Morgoth.jpg', obra: 'Morgoth', alterada: true },
   },
   galadriel: {
     src: '/portraits/galadriel.webp',
-    credito: { autor: 'T-Jacques', licenca: 'CC BY-SA 3.0', licencaUrl: 'https://creativecommons.org/licenses/by-sa/3.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Galadriel_retouched.png', obra: 'Galadriel retouched', alterada: true },
+    credito: { autor: 'Marya Filatova', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Marya_Filatova_-_Galadriel.jpg', obra: 'Galadriel', alterada: true },
   },
   luthien: {
     src: '/portraits/luthien.webp',
-    credito: { autor: 'Álvaro Fernández González', licenca: 'CC BY-SA 4.0', licencaUrl: 'https://creativecommons.org/licenses/by-sa/4.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Huan_y_L%C3%BAthien.jpg', obra: 'Huan y Lúthien', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Luthien_.jpeg', obra: 'Luthien', alterada: true },
   },
   aredhel: {
     src: '/portraits/aredhel.webp',
-    credito: { autor: 'Tom Loback', licenca: 'CC BY 2.5', licencaUrl: 'https://creativecommons.org/licenses/by/2.5/', fonte: 'https://commons.wikimedia.org/wiki/File:E%C3%B6l_and_Aredhel.jpg', obra: 'Eöl and Aredhel', alterada: true },
+    credito: { autor: 'Ted Nasmith', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Ted_Nasmith_-_Aredhel_the_White.jpg', obra: 'Aredhel the White', alterada: true },
   },
   finwe: {
     src: '/portraits/finwe.webp',
@@ -85,11 +85,11 @@ export const retratos: Partial<Record<CharacterId, Imagem>> = {
   },
   fingon: {
     src: '/portraits/fingon.webp',
-    credito: { autor: 'Anna Lee', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Anna_Lee_-_Fingon.jpg', obra: 'Fingon', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Fingon.jpg', obra: 'Fingon', alterada: true },
   },
   turgon: {
     src: '/portraits/turgon.webp',
-    credito: { autor: 'NimwenHabareth', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:NimwenHabareth_-_Turgon.png', obra: 'Turgon', alterada: true },
+    credito: { autor: 'Catherine Karina Chmiel', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Catherine_Karina_Chmiel_-_Turgon,_Idril,_and_Maeglin_together.jpg', obra: 'Turgon, Idril, and Maeglin together', alterada: true },
   },
   argon: {
     src: '/portraits/argon.webp',
@@ -121,11 +121,11 @@ export const retratos: Partial<Record<CharacterId, Imagem>> = {
   },
   thingol: {
     src: '/portraits/thingol.webp',
-    credito: { autor: 'Elena Kukanova', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Elena_Kukanova_-_King_of_Doriath.jpg', obra: 'King of Doriath', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Thingol.jpg', obra: 'Thingol', alterada: true },
   },
   melian: {
     src: '/portraits/melian.webp',
-    credito: { autor: 'Elena Kukanova', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Elena_Kukanova_-_The_Light_of_Valinor.jpg', obra: 'The Light of Valinor', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Melian.jpg', obra: 'Melian', alterada: true },
   },
   olwe: {
     src: '/portraits/olwe.webp',
@@ -133,11 +133,11 @@ export const retratos: Partial<Record<CharacterId, Imagem>> = {
   },
   cirdan: {
     src: '/portraits/cirdan.webp',
-    credito: { autor: 'Alystraea', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Alystraea_-_Cirdan.jpg', obra: 'Cirdan', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Cirdan.jpg', obra: 'Cirdan', alterada: true },
   },
   eol: {
     src: '/portraits/eol.webp',
-    credito: { autor: 'Elena Kukanova', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Elena_Kukanova_-_Destiny.jpg', obra: 'Destiny', alterada: true },
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Eol.jpg', obra: 'Eol', alterada: true },
   },
   azaghal: {
     src: '/portraits/azaghal.webp',
@@ -148,11 +148,11 @@ export const retratos: Partial<Record<CharacterId, Imagem>> = {
 export const paisagens: Partial<Record<TerritoryId, Imagem>> = {
   hithlum: {
     src: '/realms/hithlum.webp',
-    credito: { autor: 'Matěj Čadil', licenca: 'CC BY 3.0', licencaUrl: 'https://creativecommons.org/licenses/by/3.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Barad_eithel.jpg', obra: 'Barad Eithel', alterada: true },
+    credito: { autor: 'Peter Xavier Price', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Peter_Xavier_Price_-_Hithlum.jpeg', obra: 'Hithlum', alterada: true },
   },
   nevrast: {
     src: '/realms/nevrast.webp',
-    credito: { autor: 'Matěj Čadil', licenca: 'CC BY 3.0', licencaUrl: 'https://creativecommons.org/licenses/by/3.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Vinyamar.jpg', obra: 'Vinyamar', alterada: true },
+    credito: { autor: 'Ted Nasmith', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Ted_Nasmith_-_Tuor_is_Led_by_the_Swans_to_Vinyamar.jpg', obra: 'Tuor is Led by the Swans to Vinyamar', alterada: true },
   },
   aglon: {
     src: '/realms/aglon.webp',
@@ -160,15 +160,15 @@ export const paisagens: Partial<Record<TerritoryId, Imagem>> = {
   },
   'tol-sirion': {
     src: '/realms/tol-sirion.webp',
-    credito: { autor: 'Matěj Čadil', licenca: 'CC BY 3.0', licencaUrl: 'https://creativecommons.org/licenses/by/3.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Tol_sirion.jpg', obra: 'Tol Sirion', alterada: true },
+    credito: { autor: 'Stefan Meisl', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Stefan_Meisl_-_Minas_Tirith.jpeg', obra: 'Minas Tirith', alterada: true },
   },
   nargothrond: {
     src: '/realms/nargothrond.webp',
-    credito: { autor: 'Matěj Čadil', licenca: 'CC BY 3.0', licencaUrl: 'https://creativecommons.org/licenses/by/3.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Taur-en-faroth.jpg', obra: 'Taur-en-Faroth', alterada: true },
+    credito: { autor: 'Jonathan Guzi', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Jonathan_Guzi_-_Nargothrond.jpg', obra: 'Nargothrond', alterada: true },
   },
   brethil: {
     src: '/realms/brethil.webp',
-    credito: { autor: 'Matěj Čadil', licenca: 'CC BY 3.0', licencaUrl: 'https://creativecommons.org/licenses/by/3.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Brethil.jpg', obra: 'Brethil', alterada: true },
+    credito: { autor: 'Alan Lee', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Alan_Lee_-_The_Coming_of_T%C3%BArin_into_Brethil.jpg', obra: 'The Coming of Túrin into Brethil', alterada: true },
   },
   falas: {
     src: '/realms/falas.webp',
@@ -176,23 +176,23 @@ export const paisagens: Partial<Record<TerritoryId, Imagem>> = {
   },
   ossiriand: {
     src: '/realms/ossiriand.webp',
-    credito: { autor: 'Matěj Čadil', licenca: 'CC BY 3.0', licencaUrl: 'https://creativecommons.org/licenses/by/3.0/', fonte: 'https://commons.wikimedia.org/wiki/File:Duilwen.jpg', obra: 'O rio Duilwen', alterada: true },
+    credito: { autor: 'Jenny Dolfen', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Jenny_Dolfen_-_Ossiriand.jpg', obra: 'Ossiriand', alterada: true },
   },
   thargelion: {
     src: '/realms/thargelion.webp',
-    credito: { autor: 'Matěj Čadil', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Mat%C4%9Bj_%C4%8Cadil_-_Dor_Caranthir.jpg', obra: 'Dor Caranthir', alterada: true },
+    credito: { autor: 'Ted Nasmith', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Ted_Nasmith_-_Lake_Helevorn.jpg', obra: 'Lake Helevorn', alterada: true },
   },
   doriath: {
     src: '/realms/doriath.webp',
-    credito: { autor: 'Elena Kukanova', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Elena_Kukanova_-_Doriath_-_Beleg_and_young_Turin.jpg', obra: 'Doriath - Beleg and young Turin', alterada: true },
+    credito: { autor: 'Ted Nasmith', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Ted_Nasmith_-_By_Moonlight_in_Neldoreth_Forest.jpg', obra: 'By Moonlight in Neldoreth Forest', alterada: true },
   },
   angband: {
     src: '/realms/angband.webp',
-    credito: { autor: 'Henning Janssen', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Henning_Janssen_-_Three_Peaks_Fortified.jpg', obra: 'Three Peaks Fortified', alterada: true },
+    credito: { autor: 'John Howe', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:John_Howe_-_Thangorodrim.jpg', obra: 'Thangorodrim', alterada: true },
   },
   dorthonion: {
     src: '/realms/dorthonion.webp',
-    credito: { autor: 'Peter Xavier Price', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Peter_Xavier_Price_-_Beren_the_Solitary_Outlaw.jpg', obra: 'Beren the Solitary Outlaw', alterada: true },
+    credito: { autor: 'Ted Nasmith', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Ted_Nasmith_-_At_Tarn_Aeluin.jpg', obra: 'At Tarn Aeluin', alterada: true },
   },
   'ard-galen': {
     src: '/realms/ard-galen.webp',
@@ -232,7 +232,7 @@ export const paisagens: Partial<Record<TerritoryId, Imagem>> = {
   },
   'dor-lomin': {
     src: '/realms/dor-lomin.webp',
-    credito: { autor: 'Alan Lee', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Alan_Lee_-_The_Return_of_T%C3%BArin_to_Dor-l%C3%B3min.jpg', obra: 'The Return of Túrin to Dor-lómin', alterada: true },
+    credito: { autor: 'Ted Nasmith', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Ted_Nasmith_-_T%C3%BArin_Reaches_the_Abandoned_Homestead.jpg', obra: 'Túrin Reaches the Abandoned Homestead', alterada: true },
   },
   himring: {
     src: '/realms/himring.webp',
