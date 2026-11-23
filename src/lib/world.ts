@@ -9,10 +9,12 @@ import { peoples as allPeoples } from '@/data/peoples';
 import { relationships as allRelationships } from '@/data/relationships';
 import { territories as allTerritories } from '@/data/territories';
 import { timeline as allTimeline } from '@/data/timeline';
+import { paisagens, retratos } from '@/data/imagens';
 import type {
   Character,
   CharacterId,
   ChapterId,
+  Credito,
   EntityRef,
   Fato,
   Fonte,
@@ -46,6 +48,7 @@ export interface ResolvedTerritory {
   /** Revelado, mas ainda sem nome nem forma definida (ex.: Gondolin antes do cap. 15). */
   velado: boolean;
   imagem?: string;
+  imagemCredito?: Credito;
   capitulos: ChapterId[];
 }
 
@@ -61,6 +64,7 @@ export interface ResolvedCharacter {
   conjuges: Fato<CharacterId>[];
   biografia: Fato<string>[];
   retrato?: string;
+  retratoCredito?: Credito;
   fonte: Fonte;
   nota?: string;
 }
@@ -103,7 +107,8 @@ export function buildWorld(settings: ReadingSettings): World {
       irmaosExplicitos: refs(c.irmaos ?? []),
       conjuges: refs(c.conjuges),
       biografia: facts(c.biografia),
-      retrato: c.retrato,
+      retrato: c.retrato ?? retratos[c.id]?.src,
+      retratoCredito: c.retrato ? undefined : retratos[c.id]?.credito,
       fonte: c.fonte ?? 'silmarillion',
       nota: c.nota,
     });
@@ -126,7 +131,8 @@ export function buildWorld(settings: ReadingSettings): World {
       vizinhos: t.vizinhos.filter((v) => visibleTerrIds.has(v)),
       velado: t.veladoAte ? !seen(t.veladoAte) : false,
       // a imagem de um lugar velado entregaria o que ele é
-      imagem: t.veladoAte && !seen(t.veladoAte) ? undefined : t.imagem,
+      imagem: t.veladoAte && !seen(t.veladoAte) ? undefined : (t.imagem ?? paisagens[t.id]?.src),
+      imagemCredito: t.veladoAte && !seen(t.veladoAte) ? undefined : t.imagem ? undefined : paisagens[t.id]?.credito,
       capitulos: t.capitulos.filter(seen),
     });
   }

@@ -73,6 +73,20 @@ export interface Territory {
   capitulos: ChapterId[];
 }
 
+/** Crédito de uma imagem de terceiros (retrato ou paisagem). */
+export interface Credito {
+  autor: string;
+  /** Ex.: 'CC BY-SA 4.0' ou 'Domínio público'. */
+  licenca: string;
+  licencaUrl?: string;
+  /** Página da obra original (Wikimedia Commons). */
+  fonte: string;
+  /** Título da obra original. */
+  obra?: string;
+  /** true quando a imagem foi recortada ou teve as cores alteradas. */
+  alterada?: boolean;
+}
+
 export interface Character {
   id: CharacterId;
   nome: Fato<string>[];
