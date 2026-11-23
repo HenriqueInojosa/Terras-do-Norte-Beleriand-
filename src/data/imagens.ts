@@ -218,4 +218,24 @@ export const paisagens: Partial<Record<TerritoryId, Imagem>> = {
     src: '/realms/nogrod.webp',
     credito: { autor: 'Lída Holubová', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:L%C3%ADda_Holubov%C3%A1_-_Nogrod.jpg', obra: 'Nogrod', alterada: true },
   },
+  gondolin: {
+    src: '/realms/gondolin.webp',
+    credito: { autor: 'Alan Lee', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Alan_Lee_-_Gondolin.jpg', obra: 'Gondolin (A Queda de Gondolin)', alterada: true },
+  },
+  belegost: {
+    src: '/realms/belegost.webp',
+    credito: { autor: 'Rob Alexander', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Rob_Alexander_-_Blue_Mountain_Dwarf-hold.jpg', obra: 'Blue Mountain Dwarf-hold', alterada: true },
+  },
+  mithrim: {
+    src: '/realms/mithrim.webp',
+    credito: { autor: 'J.R.R. Tolkien', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:J.R.R._Tolkien_-_Lake_Mithrim.jpg', obra: 'Lake Mithrim', alterada: true },
+  },
+  'dor-lomin': {
+    src: '/realms/dor-lomin.webp',
+    credito: { autor: 'Alan Lee', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Alan_Lee_-_The_Return_of_T%C3%BArin_to_Dor-l%C3%B3min.jpg', obra: 'The Return of Túrin to Dor-lómin', alterada: true },
+  },
+  himring: {
+    src: '/realms/himring.webp',
+    credito: { autor: 'David Monette', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:David_Monette_-_Himring.jpg', obra: 'Himring', alterada: true },
+  },
 };
