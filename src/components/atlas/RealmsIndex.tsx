@@ -50,6 +50,7 @@ export function RealmsIndex() {
                         href={t.velado ? `/?r=${t.id}` : `/reinos/${t.id}/`}
                         className="group panel block overflow-hidden rounded-2xl transition-[transform,border-color] duration-500 hover:-translate-y-1 hover:border-gold-400/50"
                       >
+                        <h3 className="px-5 pb-3 pt-4 font-display text-[1.75rem] leading-tight text-gold-200">{t.nome}</h3>
                         <div className="relative h-40 overflow-hidden">
                           {t.imagem ? (
                             // eslint-disable-next-line @next/next/no-img-element
@@ -68,8 +69,7 @@ export function RealmsIndex() {
                           <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/10 to-transparent" />
                           <span className="chip absolute left-4 top-4 bg-ink-950/60 backdrop-blur">{t.velado ? 'Oculto' : TYPE_LABEL[t.tipo]}</span>
                         </div>
-                        <div className="px-5 pb-5 pt-1">
-                          <h3 className="font-display text-[1.75rem] leading-tight text-gold-200">{t.nome}</h3>
+                        <div className="px-5 pb-5 pt-3">
                           <p className="font-display text-[1rem] italic text-muted">
                             {t.velado
                               ? 'Ainda não revelado'

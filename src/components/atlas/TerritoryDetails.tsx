@@ -53,22 +53,6 @@ export function TerritoryDetails({
 
   return (
     <div>
-      {t.imagem && (
-        <figure className="mb-5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={t.imagem}
-            alt={t.nome}
-            className={`w-full rounded-xl border border-gold-500/25 object-cover ${compact ? 'h-44' : 'h-64'}`}
-            draggable={false}
-          />
-          {t.imagemCredito && (
-            <figcaption>
-              <ImageCredit credito={t.imagemCredito} rotulo="Ilustração" className="mt-1.5" />
-            </figcaption>
-          )}
-        </figure>
-      )}
       <div className="flex flex-wrap items-center gap-2">
         <span className="chip">{TYPE_LABEL[t.tipo]}</span>
         {parent && (
@@ -86,6 +70,22 @@ export function TerritoryDetails({
           {t.significado && `“${t.significado}”`}
           {t.outrosNomes.length > 0 && ` · também ${t.outrosNomes.join(', ')}`}
         </p>
+      )}
+      {t.imagem && (
+        <figure className="mt-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={t.imagem}
+            alt={t.nome}
+            className={`w-full rounded-xl border border-gold-500/25 object-cover ${compact ? 'h-44' : 'h-64'}`}
+            draggable={false}
+          />
+          {t.imagemCredito && (
+            <figcaption>
+              <ImageCredit credito={t.imagemCredito} rotulo="Ilustração" className="mt-1.5" />
+            </figcaption>
+          )}
+        </figure>
       )}
 
       <Section title={inherited ? `Governante (de ${parent?.nome})` : rulers.length > 1 ? 'Governantes' : 'Governante'}>
