@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { HexPortrait } from '@/components/ui/HexPortrait';
 import { EntityLink, FactParagraphs, SourceTag } from '@/components/ui/Links';
+import { ImageCredit } from '@/components/ui/ImageCredit';
 import { HiddenNotice } from '@/components/spoilers/HiddenNotice';
 import { useWorld } from '@/components/spoilers/ReadingProvider';
 import { chapterRef } from '@/data/chapters';
@@ -39,6 +40,7 @@ export function CharacterPage({ id }: { id: string }) {
             {c.fonte === 'complementar' && <SourceTag />}
           </div>
         </div>
+        {c.retratoCredito && <ImageCredit credito={c.retratoCredito} rotulo="Retrato" className="mt-4 text-center sm:text-left" />}
         <div className="rule-gold my-7" />
         <h2 className="mb-3 font-caps text-[0.62rem] text-gold-400">Biografia</h2>
         <FactParagraphs facts={c.biografia} className="font-display text-[1.2rem] text-fg/90" />

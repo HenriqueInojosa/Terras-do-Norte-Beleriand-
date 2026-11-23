@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { HexPortrait } from '@/components/ui/HexPortrait';
+import { ImageCredit } from '@/components/ui/ImageCredit';
 import { FactParagraphs, SourceTag } from '@/components/ui/Links';
 import { useWorld } from '@/components/spoilers/ReadingProvider';
 import type { TerritoryId } from '@/lib/types';
@@ -102,6 +103,7 @@ export function CharacterOverlay({
                   {c.fonte === 'complementar' && <SourceTag />}
                 </div>
               </div>
+              {c.retratoCredito && <ImageCredit credito={c.retratoCredito} rotulo="Retrato" className="mt-3" />}
 
               <div className="rule-gold my-5" />
               <FactParagraphs facts={c.biografia} className="font-display text-[1.12rem] text-fg/90" />
