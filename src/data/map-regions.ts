@@ -1,0 +1,33 @@
+import type { ChapterId } from '@/lib/types';
+
+// Ajustes da camada do mapa que dependem da leitura.
+// As formas e os rótulos em si vêm de generated/map-layer.ts (gerado a partir do SVG).
+
+/** Rótulos que só aparecem a partir de um capítulo (o nome é spoiler ou só surge depois). */
+export const labelReveal: Record<string, ChapterId> = {
+  'lbl-gondolin': 'qs-15',
+  'lbl-arvernien': 'qs-24',
+  'lbl-betulas-de-nimbrethil': 'qs-24',
+};
+
+/** Partes de rótulos (linhas) reveladas depois do resto. Índice da linha → capítulo. */
+export const labelPartReveal: Record<string, Record<number, ChapterId>> = {
+  'lbl-dorthonion': { 1: 'qs-18' }, // "Taur-nu-Fuin"
+};
+
+/** Marca da cidade de Gondolin no mapa. */
+export const GONDOLIN_MARKER_REVEAL: ChapterId = 'qs-15';
+
+/** Nível de detalhe de cada rótulo: 0 sempre visível, 1 com algum zoom, 2 de perto. */
+export function labelLod(cls: string, isTerritory: boolean): 0 | 1 | 2 {
+  const c = ` ${cls} `;
+  if (/ (sea|titulo|subtitulo) /.test(c) || c.includes(' big ') || c.includes(' evil ')) return 0;
+  if (c.includes(' xl ')) return 0;
+  if (isTerritory) return 0;
+  if (c.includes(' l ') || c.includes(' m ') || c.includes(' dark ') || / city /.test(c)) return 1;
+  return 2;
+}
+
+export function lodForZoom(rel: number): 0 | 1 | 2 {
+  return rel < 1.45 ? 0 : rel < 2.4 ? 1 : 2;
+}
