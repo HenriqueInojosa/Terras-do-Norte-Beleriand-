@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, useCallback, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { chapterIndex } from '@/data/chapters';
 import { mapLayer } from '@/data/generated/map-layer';
 import { GONDOLIN_MARKER_REVEAL, labelLod, labelPartReveal, labelReveal, lodForZoom } from '@/data/map-regions';
@@ -35,6 +35,15 @@ export const MapCanvas = forwardRef<MapCanvasHandle, Props>(function MapCanvas(
   const camera = useRef<PanZoomHandle>(null);
   const shapes = useRef(new Map<TerritoryId, SVGGraphicsElement>());
   const [lod, setLod] = useState<0 | 1 | 2>(0);
+  // a arte em alta resolução só é carregada quando o usuário aproxima o mapa
+  const [hiRes, setHiRes] = useState(false);
+  useEffect(() => {
+    // no celular a versão 4800px pesa demais na memória; fica a de 2400px
+    if (lod === 0 || hiRes || window.innerWidth < 768) return;
+    const img = new Image();
+    img.src = '/maps/beleriand-base@2x.webp';
+    img.decode().then(() => setHiRes(true)).catch(() => setHiRes(true));
+  }, [lod, hiRes]);
   const [hover, setHover] = useState<TerritoryId | null>(null);
   const seen = useCallback((c: string) => chapterIndex(c as never) <= world.progress, [world.progress]);
 
@@ -98,7 +107,8 @@ export const MapCanvas = forwardRef<MapCanvasHandle, Props>(function MapCanvas(
       {/* Arte do mapa como imagem: leve para o zoom */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/maps/beleriand-base.svg"
+        src={hiRes ? '/maps/beleriand-base@2x.webp' : '/maps/beleriand-base.webp'}
+        decoding="async"
         alt="Mapa de Beleriand"
         width={MAP_W}
         height={MAP_H}

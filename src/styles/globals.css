@@ -96,13 +96,13 @@ a {
 
   /* Painel escuro com borda dourada fina */
   .panel {
-    background: linear-gradient(180deg, rgba(33, 28, 23, 0.88), rgba(20, 17, 14, 0.92));
+    background: linear-gradient(180deg, rgba(33, 28, 23, 0.96), rgba(20, 17, 14, 0.97));
     border: 1px solid rgba(184, 146, 63, 0.28);
     box-shadow:
       0 0 0 1px rgba(0, 0, 0, 0.4),
       0 24px 60px -20px rgba(0, 0, 0, 0.75),
       inset 0 1px 0 rgba(243, 226, 174, 0.06);
-    backdrop-filter: blur(14px) saturate(1.1);
+    /* sem backdrop-filter: o desfoque recalculado a cada quadro travava o mapa */
   }
 
   /* Pergaminho: usado nos textos longos das fichas */

@@ -289,7 +289,20 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
     zoomAt(e.shiftKey ? 1 / 1.8 : 1.8, e.clientX - r.left, e.clientY - r.top, GLIDE_SPRING);
   };
 
-  useMotionValueEvent(s, 'change', (v) => onZoomChange?.(v / fitScale.current));
+  // Durante o zoom a camada vira uma textura da GPU (sem redesenhar o SVG a cada quadro);
+  // ao parar, o will-change sai e o navegador redesenha nítido na escala final.
+  const layer = useRef<HTMLDivElement>(null);
+  const settle = useRef<number | undefined>(undefined);
+  useMotionValueEvent(s, 'change', (v) => {
+    onZoomChange?.(v / fitScale.current);
+    const el = layer.current;
+    if (!el) return;
+    if (el.style.willChange !== 'transform') el.style.willChange = 'transform';
+    window.clearTimeout(settle.current);
+    settle.current = window.setTimeout(() => {
+      el.style.willChange = 'auto';
+    }, 180);
+  });
 
   return (
     <div
@@ -304,6 +317,7 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
       style={{ cursor: 'grab' }}
     >
       <motion.div
+        ref={layer}
         style={{ x, y, scale: s, width, height, transformOrigin: '0 0', position: 'absolute', left: 0, top: 0 }}
       >
         {children}

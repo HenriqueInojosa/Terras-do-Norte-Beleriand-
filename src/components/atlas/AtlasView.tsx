@@ -126,7 +126,7 @@ export function AtlasView() {
         </AnimatePresence>
 
         {/* Controles de zoom */}
-        <div className="absolute bottom-5 left-5 z-10 flex flex-col overflow-hidden rounded-full border border-gold-500/30 bg-ink-900/80 backdrop-blur">
+        <div className="absolute bottom-5 left-5 z-10 flex flex-col overflow-hidden rounded-full border border-gold-500/30 bg-ink-900/95">
           {[
             { l: '+', f: () => map.current?.zoomBy(1.6), a: 'Aproximar' },
             { l: '−', f: () => map.current?.zoomBy(1 / 1.6), a: 'Afastar' },
