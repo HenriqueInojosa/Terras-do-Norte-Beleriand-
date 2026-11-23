@@ -52,6 +52,15 @@ export function TerritoryDetails({
 
   return (
     <div>
+      {t.imagem && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={t.imagem}
+          alt={t.nome}
+          className={`mb-5 w-full rounded-xl border border-gold-500/25 object-cover ${compact ? 'h-44' : 'h-64'}`}
+          draggable={false}
+        />
+      )}
       <div className="flex flex-wrap items-center gap-2">
         <span className="chip">{TYPE_LABEL[t.tipo]}</span>
         {parent && (

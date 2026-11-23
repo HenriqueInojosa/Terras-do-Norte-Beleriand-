@@ -45,6 +45,7 @@ export interface ResolvedTerritory {
   vizinhos: TerritoryId[];
   /** Revelado, mas ainda sem nome nem forma definida (ex.: Gondolin antes do cap. 15). */
   velado: boolean;
+  imagem?: string;
   capitulos: ChapterId[];
 }
 
@@ -124,6 +125,8 @@ export function buildWorld(settings: ReadingSettings): World {
       povos: facts(t.povos).map((x) => x.valor),
       vizinhos: t.vizinhos.filter((v) => visibleTerrIds.has(v)),
       velado: t.veladoAte ? !seen(t.veladoAte) : false,
+      // a imagem de um lugar velado entregaria o que ele é
+      imagem: t.veladoAte && !seen(t.veladoAte) ? undefined : t.imagem,
       capitulos: t.capitulos.filter(seen),
     });
   }

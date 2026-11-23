@@ -9,11 +9,12 @@ import { LinkBehaviorContext } from '@/components/ui/Links';
 import { useWorld } from '@/components/spoilers/ReadingProvider';
 import type { EntityRef, TerritoryId } from '@/lib/types';
 import { TYPE_LABEL, highlightFor } from '@/lib/world';
-import { MapCanvas, type MapCanvasHandle } from './MapCanvas';
+import { MapCanvas, territoryCenter, type MapCanvasHandle } from './MapCanvas';
 import { TerritoryDetails } from './TerritoryDetails';
 
 const HEADER_H = 64; // igual a --header-h em globals.css
 const PANEL_W = 440;
+const PERSON_W = 590; // largura do card de personagem + margem
 
 function useIsNarrow() {
   const [narrow, setNarrow] = useState(false);
@@ -55,15 +56,27 @@ export function AtlasView() {
   );
 
   const related = useMemo(() => (person ? highlightFor(world, person) : []), [world, person]);
-  const offsets = useCallback(
-    () => {
-      const offsetTop = HEADER_H;
-      return narrow
-        ? { offsetTop, offsetBottom: selected ? window.innerHeight * 0.5 : 0 }
-        : { offsetTop, offsetRight: selected ? PANEL_W + 24 : 0 };
-    },
-    [narrow, selected],
-  );
+
+  // O card nunca cobre o reino: abre do lado oposto ao território no mapa.
+  // Reino no leste → painel à esquerda; no celular, reino no sul → gaveta em cima.
+  const where = useMemo(() => (selected ? territoryCenter(selected) : null), [selected]);
+  const panelSide: 'left' | 'right' = !narrow && where && where.fx > 0.5 ? 'left' : 'right';
+  const sheetSide: 'top' | 'bottom' = narrow && where && where.fy > 0.55 ? 'top' : 'bottom';
+  const personSide: 'left' | 'right' = selected && panelSide === 'left' ? 'right' : 'left';
+
+  const offsets = useCallback(() => {
+    if (narrow) {
+      const sheet = selected ? window.innerHeight * 0.52 : 0;
+      return sheetSide === 'top'
+        ? { offsetTop: HEADER_H + sheet }
+        : { offsetTop: HEADER_H, offsetBottom: sheet };
+    }
+    const panel = selected ? PANEL_W + 24 : 0;
+    const card = person ? PERSON_W : 0;
+    const left = (panelSide === 'left' ? panel : 0) + (personSide === 'left' ? card : 0);
+    const right = (panelSide === 'right' ? panel : 0) + (personSide === 'right' ? card : 0);
+    return { offsetTop: HEADER_H, offsetLeft: left, offsetRight: right };
+  }, [narrow, selected, person, panelSide, personSide, sheetSide]);
 
   // Câmera: vai para o que mudou por último — o território escolhido ou os domínios do personagem aberto
   const last = useRef<{ r?: string; p?: string | null; n?: boolean; first: boolean }>({ first: true });
@@ -75,12 +88,11 @@ export function AtlasView() {
     const changedN = narrow !== prev.n;
     last.current = { r: selected, p: person, n: narrow, first: false };
     if (!first && !changedR && !changedP && !changedN) return;
-    const left = person && !narrow ? 590 : 0;
     const run = () => {
       if (person && related.length && (changedP || !selected)) {
-        map.current?.flyToTerritories(related, { fill: 0.5, maxRel: 3, offsetLeft: left, ...offsets() });
+        map.current?.flyToTerritories(related, { fill: 0.5, maxRel: 3, ...offsets() });
       } else if (selected && (changedR || changedN || first)) {
-        map.current?.flyToTerritories([selected], { fill: 0.5, maxRel: 3.4, offsetLeft: left, ...offsets() });
+        map.current?.flyToTerritories([selected], { fill: 0.5, maxRel: 3.4, ...offsets() });
       } else if (!selected && !person) {
         map.current?.fit();
       }
@@ -133,7 +145,11 @@ export function AtlasView() {
         </AnimatePresence>
 
         {/* Controles de zoom */}
-        <div className="absolute bottom-5 left-5 z-10 flex flex-col overflow-hidden rounded-full border border-gold-500/30 bg-ink-900/95">
+        <div
+          className={`absolute bottom-5 z-10 flex flex-col ${
+            !narrow && ((selected && panelSide === 'left') || (person && personSide === 'left')) ? 'right-5' : 'left-5'
+          } overflow-hidden rounded-full border border-gold-500/30 bg-ink-900/95`}
+        >
           {[
             { l: '+', f: () => map.current?.zoomBy(1.6), a: 'Aproximar' },
             { l: '−', f: () => map.current?.zoomBy(1 / 1.6), a: 'Afastar' },
@@ -174,13 +190,25 @@ export function AtlasView() {
         <AnimatePresence>
           {territory && (
             <motion.aside
-              key={narrow ? 'sheet' : 'panel'}
-              initial={narrow ? { x: 0, y: '100%', opacity: 1 } : { x: PANEL_W + 40, y: 0, opacity: 0.4 }}
+              key={narrow ? `sheet-${sheetSide}` : `panel-${panelSide}`}
+              initial={
+                narrow
+                  ? { x: 0, y: sheetSide === 'top' ? '-100%' : '100%', opacity: 1 }
+                  : { x: panelSide === 'left' ? -(PANEL_W + 40) : PANEL_W + 40, y: 0, opacity: 0.4 }
+              }
               animate={{ x: 0, y: 0, opacity: 1 }}
-              exit={narrow ? { x: 0, y: '100%', opacity: 1 } : { x: PANEL_W + 40, y: 0, opacity: 0 }}
+              exit={
+                narrow
+                  ? { x: 0, y: sheetSide === 'top' ? '-100%' : '100%', opacity: 1 }
+                  : { x: panelSide === 'left' ? -(PANEL_W + 40) : PANEL_W + 40, y: 0, opacity: 0 }
+              }
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className={`panel absolute z-20 flex flex-col overflow-hidden ${
-                narrow ? 'inset-x-0 bottom-0 h-[52%] rounded-t-2xl' : 'bottom-3 right-3 top-[calc(var(--header-h)+12px)] rounded-2xl'
+                narrow
+                  ? sheetSide === 'top'
+                    ? 'inset-x-0 top-[var(--header-h)] h-[52%] rounded-b-2xl'
+                    : 'inset-x-0 bottom-0 h-[52%] rounded-t-2xl'
+                  : `bottom-3 top-[calc(var(--header-h)+12px)] rounded-2xl ${panelSide === 'left' ? 'left-3' : 'right-3'}`
               }`}
               style={narrow ? undefined : { width: PANEL_W }}
             >
@@ -228,6 +256,7 @@ export function AtlasView() {
           onTerritory={(id) => setParams({ r: id, p: null })}
           mapHref={false}
           backdrop={false}
+          side={personSide}
         />
       </div>
     </LinkBehaviorContext.Provider>

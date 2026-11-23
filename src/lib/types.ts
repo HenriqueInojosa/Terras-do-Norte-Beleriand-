@@ -66,6 +66,8 @@ export interface Territory {
   povos: Fato<PeopleId>[];
   vizinhos: TerritoryId[];
   revelado: ChapterId;
+  /** Ilustração do reino (ex.: '/realms/doriath.webp'). Sem ela, os cards usam um recorte do mapa. */
+  imagem?: string;
   /** Antes deste capítulo o território aparece velado (sem nome) no mapa. */
   veladoAte?: ChapterId;
   capitulos: ChapterId[];
