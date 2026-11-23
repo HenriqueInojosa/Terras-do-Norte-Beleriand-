@@ -6,6 +6,7 @@ import type { ChapterId } from '@/lib/types';
 /** Rótulos que só aparecem a partir de um capítulo (o nome é spoiler ou só surge depois). */
 export const labelReveal: Record<string, ChapterId> = {
   'lbl-gondolin': 'qs-15',
+  'lbl-estolad': 'qs-17',
   'lbl-arvernien': 'qs-24',
   'lbl-betulas-de-nimbrethil': 'qs-24',
 };

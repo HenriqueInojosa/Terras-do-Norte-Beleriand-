@@ -103,7 +103,7 @@ describe('controle de spoilers', () => {
       ...[...w.characters.values()].flatMap((c) => c.biografia.map((b) => b.valor)),
       ...[...w.territories.values()].flatMap((t) => t.descricao.map((d) => d.valor)),
     ].join(' ');
-    for (const word of ['Gondolin', 'Hador', 'Taur-nu-Fuin', 'Anfauglith']) expect(visible).not.toContain(word);
+    for (const word of ['Gondolin', 'Hador', 'Taur-nu-Fuin', 'Anfauglith', 'Estolad', 'Eöl', 'Azaghâl', 'Haladin']) expect(visible).not.toContain(word);
   });
 
   it('Argon só aparece com fontes complementares ligadas', () => {
@@ -115,6 +115,18 @@ describe('controle de spoilers', () => {
     const w = buildWorld({ chapter: 'qs-12', showComplementar: false });
     expect(w.territories.has('hithlum')).toBe(false);
     expect(w.territories.has('angband')).toBe(true);
+  });
+
+  it('reinos novos respeitam a leitura', () => {
+    const w14 = buildWorld({ chapter: 'qs-14', showComplementar: false });
+    for (const id of ['doriath', 'nargothrond', 'tol-sirion', 'falas', 'ossiriand', 'nogrod', 'belegost', 'beleriand-leste'] as const)
+      expect(w14.territories.has(id)).toBe(true);
+    expect(w14.territories.has('estolad')).toBe(false);
+    expect(w14.characters.has('eol')).toBe(false);
+    expect(w14.relationships.some((r) => r.id === 'orodreth-governa-tol-sirion')).toBe(false);
+    expect(w14.relationships.some((r) => r.id === 'finrod-governa-nargothrond')).toBe(true);
+    const w17 = buildWorld({ chapter: 'qs-17', showComplementar: false });
+    expect(w17.territories.has('estolad')).toBe(true);
   });
 
   it('link para território velado vira texto neutro', () => {

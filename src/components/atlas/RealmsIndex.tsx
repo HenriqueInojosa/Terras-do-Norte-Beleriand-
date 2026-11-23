@@ -23,7 +23,7 @@ export function RealmsIndex() {
       <PageHeading
         kicker="Enciclopédia"
         title="Reinos de Beleriand"
-        intro="Os domínios do norte e do leste, como o capítulo 14 os descreve. Só aparece o que já foi revelado na sua leitura."
+        intro="Os reinos dos Elfos e dos Anões em Beleriand, como o capítulo 14 os descreve. Só aparece o que já foi revelado na sua leitura."
       />
       <div className="mx-auto max-w-6xl space-y-14 px-5">
         {ORDER.map((g) => {

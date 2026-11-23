@@ -16,6 +16,8 @@ const PALETTES: Record<string, Palette> = {
   melian: { field: '#1d1f38', ring: '#c8c3e6', star: '#ece8ff', ink: '#ece8ff' },
   teleri: { field: '#10303a', ring: '#a8d2dc', star: '#e2f4f8', ink: '#e2f4f8' },
   morgoth: { field: '#120c0a', ring: '#7a2a18', star: '#c0643a', ink: '#e8a27a' },
+  anoes: { field: '#2a2420', ring: '#b8a27a', star: '#d9c8a4', ink: '#f0e4c8' },
+  sindar: { field: '#1e2a28', ring: '#a9b8b0', star: '#d8e2dc', ink: '#e8f0ec' },
 };
 
 export function branchOf(world: World, c: ResolvedCharacter): keyof typeof PALETTES {
@@ -23,6 +25,10 @@ export function branchOf(world: World, c: ResolvedCharacter): keyof typeof PALET
   if (c.id === 'melian') return 'melian';
   if (c.povo === 'teleri') return 'teleri';
   if (c.casa === 'thingol') return 'thingol';
+  if (!c.casa) {
+    if (c.povo === 'anoes') return 'anoes';
+    if (c.povo === 'sindar') return 'sindar';
+  }
   const seen = new Set<string>();
   let frontier = [c.id];
   while (frontier.length) {

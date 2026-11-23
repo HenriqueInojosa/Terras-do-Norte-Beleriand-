@@ -5,6 +5,8 @@ export const peoples: People[] = [
   { id: 'vanyar', nome: 'Vanyar', descricao: 'Os Elfos Belos, primeiro povo dos Eldar.', revelado: 'qs-3' },
   { id: 'teleri', nome: 'Teleri', descricao: 'O terceiro povo dos Eldar, amantes do mar.', revelado: 'qs-3' },
   { id: 'sindar', nome: 'Sindar', descricao: 'Os Elfos Cinzentos, Teleri que ficaram em Beleriand sob Thingol.', revelado: 'qs-10' },
+  { id: 'laiquendi', nome: 'Laiquendi', descricao: 'Os Elfos Verdes de Ossiriand, descendentes dos Nandor que deixaram a Grande Jornada.', revelado: 'qs-10' },
+  { id: 'anoes', nome: 'Anões', descricao: 'Os Naugrim, feitos por Aulë. Em Beleriand, moravam nas cidades de Nogrod e Belegost, nas Montanhas Azuis.', revelado: 'qs-2' },
   { id: 'maiar', nome: 'Maiar', descricao: 'Espíritos da mesma ordem dos Valar, porém de grau menor.', revelado: 'valaquenta' },
   { id: 'ainur', nome: 'Ainur', descricao: 'Os Sagrados, primeiros seres criados por Ilúvatar.', revelado: 'ainulindale' },
   { id: 'homens', nome: 'Homens', descricao: 'Os Seguidores, segundos Filhos de Ilúvatar.', revelado: 'qs-12' },
