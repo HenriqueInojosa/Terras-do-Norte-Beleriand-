@@ -12,6 +12,7 @@ import { TYPE_LABEL, highlightFor } from '@/lib/world';
 import { MapCanvas, type MapCanvasHandle } from './MapCanvas';
 import { TerritoryDetails } from './TerritoryDetails';
 
+const HEADER_H = 64; // igual a --header-h em globals.css
 const PANEL_W = 440;
 
 function useIsNarrow() {
@@ -55,7 +56,12 @@ export function AtlasView() {
 
   const related = useMemo(() => (person ? highlightFor(world, person) : []), [world, person]);
   const offsets = useCallback(
-    () => (narrow ? { offsetBottom: selected ? window.innerHeight * 0.5 : 0 } : { offsetRight: selected ? PANEL_W + 24 : 0 }),
+    () => {
+      const offsetTop = HEADER_H;
+      return narrow
+        ? { offsetTop, offsetBottom: selected ? window.innerHeight * 0.5 : 0 }
+        : { offsetTop, offsetRight: selected ? PANEL_W + 24 : 0 };
+    },
     [narrow, selected],
   );
 
@@ -93,7 +99,8 @@ export function AtlasView() {
 
   return (
     <LinkBehaviorContext.Provider value={{ open: openRef }}>
-      <div className="relative h-[calc(100dvh-var(--header-h))] overflow-hidden">
+      {/* Tela cheia: o mapa fica por trás do cabeçalho, que flutua por cima */}
+      <div className="fixed inset-0 overflow-hidden bg-ink-950">
         <MapCanvas
           ref={map}
           world={world}
@@ -113,7 +120,7 @@ export function AtlasView() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 4 }}
               transition={{ duration: 0.2 }}
-              className="panel pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 rounded-full px-4 py-1.5"
+              className="panel pointer-events-none absolute left-1/2 top-[calc(var(--header-h)+16px)] -translate-x-1/2 rounded-full px-4 py-1.5"
             >
               <span className="font-display text-lg text-gold-200">
                 {world.territories.get(hover)!.velado ? 'Um vale oculto…' : world.territories.get(hover)!.nome}
@@ -173,7 +180,7 @@ export function AtlasView() {
               exit={narrow ? { x: 0, y: '100%', opacity: 1 } : { x: PANEL_W + 40, y: 0, opacity: 0 }}
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className={`panel absolute z-20 flex flex-col overflow-hidden ${
-                narrow ? 'inset-x-0 bottom-0 h-[52%] rounded-t-2xl' : 'bottom-3 right-3 top-3 rounded-2xl'
+                narrow ? 'inset-x-0 bottom-0 h-[52%] rounded-t-2xl' : 'bottom-3 right-3 top-[calc(var(--header-h)+12px)] rounded-2xl'
               }`}
               style={narrow ? undefined : { width: PANEL_W }}
             >

@@ -21,6 +21,8 @@ export interface FlyOptions {
   offsetLeft?: number;
   /** pixels ocupados embaixo (painel em telas estreitas) */
   offsetBottom?: number;
+  /** pixels ocupados em cima (cabeçalho flutuando sobre o mapa) */
+  offsetTop?: number;
   instant?: boolean;
 }
 
@@ -35,8 +37,11 @@ interface Props {
   height: number;
   minRel?: number;
   maxRel?: number;
-  /** como enquadrar no início: caber inteiro ('contain') ou preencher ('cover') */
+  /** 'contain': o conteúdo cabe inteiro na tela. 'cover': o conteúdo sempre cobre a tela
+   *  (tela cheia, sem bordas vazias); o zoom relativo continua medido a partir do 'contain'. */
   initial?: 'contain' | 'cover';
+  /** no modo 'cover', onde o conteúdo começa: centralizado ou com o topo à vista */
+  coverAlign?: 'center' | 'top';
   onZoomChange?: (rel: number) => void;
   className?: string;
   children: React.ReactNode;
@@ -51,7 +56,7 @@ const FLY = { duration: 1.15, ease: [0.22, 1, 0.36, 1] } as const;
  * Roda do mouse e pinça com mola, arraste com inércia, voo animado até um retângulo.
  */
 export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
-  { width, height, minRel = 0.85, maxRel = 7, initial = 'contain', onZoomChange, className, children },
+  { width, height, minRel = 0.85, maxRel = 7, initial = 'contain', coverAlign = 'center', onZoomChange, className, children },
   ref,
 ) {
   const viewport = useRef<HTMLDivElement>(null);
@@ -60,6 +65,7 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
   const s = useMotionValue(1);
   const target = useRef({ x: 0, y: 0, s: 1 });
   const fitScale = useRef(1);
+  const minScale = useRef(0);
   const anims = useRef<AnimationPlaybackControls[]>([]);
   const ready = useRef(false);
 
@@ -78,7 +84,7 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
       const { vw, vh } = size();
       const cw = width * ns;
       const ch = height * ns;
-      const margin = 0.35;
+      const margin = initial === 'cover' ? 0 : 0.35;
       const clampAxis = (v: number, content: number, view: number) => {
         if (content <= view) {
           const center = (view - content) / 2;
@@ -88,7 +94,7 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
       };
       return { x: clampAxis(nx, cw, vw), y: clampAxis(ny, ch, vh), s: ns };
     },
-    [width, height],
+    [width, height, initial],
   );
 
   const go = useCallback(
@@ -101,7 +107,7 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
     [clamp, s, x, y],
   );
 
-  const clampScale = (v: number) => Math.min(Math.max(v, fitScale.current * minRel), fitScale.current * maxRel);
+  const clampScale = (v: number) => Math.min(Math.max(v, minScale.current), fitScale.current * maxRel);
 
   const zoomAt = useCallback(
     (factor: number, px: number, py: number, transition: object = WHEEL_SPRING) => {
@@ -122,10 +128,12 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
       const contain = Math.min(aw / width, ah / height);
       const cover = Math.max(vw / width, vh / height);
       fitScale.current = Math.min(vw / width, vh / height);
-      const sc = initial === 'cover' ? cover : contain * 0.96;
+      minScale.current = initial === 'cover' ? cover : fitScale.current * minRel;
+      if (initial === 'cover') return { x: (vw - width * cover) / 2, y: coverAlign === 'top' ? 0 : (vh - height * cover) / 2, s: cover };
+      const sc = contain * 0.96;
       return { x: (aw - width * sc) / 2, y: (ah - height * sc) / 2, s: sc };
     },
-    [width, height, initial],
+    [width, height, initial, minRel, coverAlign],
   );
 
   useImperativeHandle(
@@ -133,14 +141,17 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
     () => ({
       flyTo(rect, opts = {}) {
         const { vw, vh } = size();
+        if (vw < 2 || vh < 2) return;
+        computeFit(); // garante a escala mínima atual antes de calcular o voo
         const left = opts.offsetLeft ?? 0;
         const aw = vw - (opts.offsetRight ?? 0) - left;
-        const ah = vh - (opts.offsetBottom ?? 0);
+        const top = opts.offsetTop ?? 0;
+        const ah = vh - (opts.offsetBottom ?? 0) - top;
         const fill = opts.fill ?? 0.55;
         const rel = opts.maxRel ?? 4;
         let ns = Math.min((aw * fill) / Math.max(rect.w, 1), (ah * fill) / Math.max(rect.h, 1));
-        ns = Math.min(Math.max(ns, fitScale.current), fitScale.current * rel);
-        const next = { x: left + aw / 2 - (rect.x + rect.w / 2) * ns, y: ah / 2 - (rect.y + rect.h / 2) * ns, s: ns };
+        ns = Math.min(Math.max(ns, fitScale.current, minScale.current), fitScale.current * rel);
+        const next = { x: left + aw / 2 - (rect.x + rect.w / 2) * ns, y: top + ah / 2 - (rect.y + rect.h / 2) * ns, s: ns };
         go(next, opts.instant ? { duration: 0 } : FLY);
       },
       zoomBy(factor) {
@@ -148,6 +159,8 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
         zoomAt(factor, vw / 2, vh / 2, GLIDE_SPRING);
       },
       fit(opts = {}) {
+        const { vw, vh } = size();
+        if (vw < 2 || vh < 2) return;
         go(computeFit(opts.offsetRight, opts.offsetBottom), FLY);
       },
     }),
@@ -159,6 +172,8 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
     const el = viewport.current;
     if (!el) return;
     const ro = new ResizeObserver(() => {
+      // ainda sem tamanho (montando): espera a próxima medida
+      if (!el.clientWidth || !el.clientHeight) return;
       if (!ready.current) {
         const f = computeFit();
         target.current = f;
@@ -169,7 +184,7 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
       } else {
         computeFit();
         const t = target.current;
-        go(t, GLIDE_SPRING);
+        go({ ...t, s: clampScale(t.s) }, GLIDE_SPRING);
       }
     });
     ro.observe(el);

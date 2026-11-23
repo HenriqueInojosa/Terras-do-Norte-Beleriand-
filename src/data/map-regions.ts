@@ -8,13 +8,11 @@ export const labelReveal: Record<string, ChapterId> = {
   'lbl-gondolin': 'qs-15',
   'lbl-estolad': 'qs-17',
   'lbl-arvernien': 'qs-24',
-  'lbl-betulas-de-nimbrethil': 'qs-24',
+  'lbl-nimbrethil': 'qs-24',
 };
 
 /** Partes de rótulos (linhas) reveladas depois do resto. Índice da linha → capítulo. */
-export const labelPartReveal: Record<string, Record<number, ChapterId>> = {
-  'lbl-dorthonion': { 1: 'qs-18' }, // "Taur-nu-Fuin"
-};
+export const labelPartReveal: Record<string, Record<number, ChapterId>> = {};
 
 /** Marca da cidade de Gondolin no mapa. */
 export const GONDOLIN_MARKER_REVEAL: ChapterId = 'qs-15';
@@ -22,11 +20,10 @@ export const GONDOLIN_MARKER_REVEAL: ChapterId = 'qs-15';
 /** Nível de detalhe de cada rótulo: 0 sempre visível, 1 com algum zoom, 2 de perto. */
 export function labelLod(cls: string, isTerritory: boolean): 0 | 1 | 2 {
   const c = ` ${cls} `;
-  if (/ (sea|titulo|subtitulo) /.test(c) || c.includes(' big ') || c.includes(' evil ')) return 0;
-  if (c.includes(' xl ')) return 0;
   if (isTerritory) return 0;
-  if (c.includes(' l ') || c.includes(' m ') || c.includes(' dark ') || / city /.test(c)) return 1;
-  return 2;
+  if (/ (mar|big|mal) /.test(c) || / reg (xl|l) /.test(c)) return 0;
+  if (/ (reg|lugar|mtn) /.test(c)) return 1;
+  return 2; // rios, lagos e nomes menores
 }
 
 export function lodForZoom(rel: number): 0 | 1 | 2 {

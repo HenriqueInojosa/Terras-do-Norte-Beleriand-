@@ -17,8 +17,8 @@ npm run build      # gera o site estático em out/
 
 ```
 assets/map/beleriand-estilizado.svg   mapa original estilizado (fonte)
-scripts/split_map.py                  divide o mapa em arte (imagem) e camada interativa
-public/maps/beleriand-base.svg        arte do mapa, gerada
+scripts/import_map.py                 gera a camada interativa do mapa (áreas e rótulos)
+public/maps/beleriand-base.webp       arte do mapa (e @2x)
 src/
   app/                  rotas: Atlas, /reinos, /personagens, /genealogias, /relacoes, /linha-do-tempo
   components/
@@ -55,8 +55,13 @@ no personagem em `src/data/characters.ts`.
 
 ## Mapa
 
-Depois de editar `assets/map/beleriand-estilizado.svg`, rode `npm run map` para gerar de novo a arte e a camada
-interativa. Cada território é um elemento com o mesmo id usado em `territories.ts`.
+O mapa é um desenho à pena, de borda a borda, que ocupa a tela inteira no Atlas.
+Os arquivos ficam em `assets/map/bico-de-pena/`:
 
-A arte é exibida como WebP (`public/maps/beleriand-base.webp` e a versão `@2x`, carregada só ao aproximar), não como SVG:
-os filtros do SVG deixavam o zoom lento. O passo de rasterização usa o Playwright com Chromium e o Pillow.
+- `beleriand-regioes.svg`: as áreas clicáveis, cada uma com o mesmo id usado em `territories.ts`;
+- `beleriand-rotulos.svg`: os nomes do mapa, desenhados pelo app por cima da arte para respeitar spoilers e zoom;
+- `beleriand-estilizado.svg` e `fonte/`: a versão vetorial completa e os scripts que geram a arte.
+
+A arte vai pronta em `public/maps/beleriand-base.webp` (2400px) e `@2x` (4800px, carregada só ao aproximar no desktop),
+sem nenhum nome escrito. Depois de trocar as regiões ou os rótulos, rode `npm run map` para gerar de novo
+`src/data/generated/map-layer.ts`.

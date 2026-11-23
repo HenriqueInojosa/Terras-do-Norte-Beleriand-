@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 const FONTS =
-  'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&display=swap';
+  'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Uncial+Antiqua&display=swap';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link rel="stylesheet" href={FONTS} />
-        <link rel="preload" href="/maps/beleriand-base.svg" as="image" type="image/svg+xml" />
+        <link rel="preload" href="/maps/beleriand-base.webp" as="image" type="image/webp" />
       </head>
       <body>
         <ReadingProvider>
