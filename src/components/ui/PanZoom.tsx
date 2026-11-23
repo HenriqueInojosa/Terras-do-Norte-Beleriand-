@@ -79,20 +79,25 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
     return el ? { vw: el.clientWidth, vh: el.clientHeight } : { vw: 1, vh: 1 };
   };
 
+  // Folga extra nas bordas enquanto há painéis abertos: deixa levar um canto do mapa
+  // para a área livre em vez de ficar escondido atrás do painel.
+  const slack = useRef({ left: 0, right: 0, top: 0, bottom: 0 });
+
   const clamp = useCallback(
     (nx: number, ny: number, ns: number) => {
       const { vw, vh } = size();
       const cw = width * ns;
       const ch = height * ns;
       const margin = initial === 'cover' ? 0 : 0.35;
-      const clampAxis = (v: number, content: number, view: number) => {
+      const sl = slack.current;
+      const clampAxis = (v: number, content: number, view: number, lo: number, hi: number) => {
         if (content <= view) {
           const center = (view - content) / 2;
-          return Math.min(Math.max(v, center - view * margin), center + view * margin);
+          return Math.min(Math.max(v, center - view * margin - hi), center + view * margin + lo);
         }
-        return Math.min(Math.max(v, view - content - view * margin), view * margin);
+        return Math.min(Math.max(v, view - content - view * margin - hi), view * margin + lo);
       };
-      return { x: clampAxis(nx, cw, vw), y: clampAxis(ny, ch, vh), s: ns };
+      return { x: clampAxis(nx, cw, vw, sl.left, sl.right), y: clampAxis(ny, ch, vh, sl.top, sl.bottom), s: ns };
     },
     [width, height, initial],
   );
@@ -143,6 +148,12 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
         const { vw, vh } = size();
         if (vw < 2 || vh < 2) return;
         computeFit(); // garante a escala mínima atual antes de calcular o voo
+        slack.current = {
+          left: opts.offsetLeft ?? 0,
+          right: opts.offsetRight ?? 0,
+          top: Math.max(0, (opts.offsetTop ?? 0) - 80), // o cabeçalho é translúcido: pouca folga
+          bottom: opts.offsetBottom ?? 0,
+        };
         const left = opts.offsetLeft ?? 0;
         const aw = vw - (opts.offsetRight ?? 0) - left;
         const top = opts.offsetTop ?? 0;
@@ -161,6 +172,7 @@ export const PanZoom = forwardRef<PanZoomHandle, Props>(function PanZoom(
       fit(opts = {}) {
         const { vw, vh } = size();
         if (vw < 2 || vh < 2) return;
+        slack.current = { left: 0, right: 0, top: 0, bottom: 0 };
         go(computeFit(opts.offsetRight, opts.offsetBottom), FLY);
       },
     }),

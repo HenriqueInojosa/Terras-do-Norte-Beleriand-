@@ -11,6 +11,24 @@ import { PanZoom, type FlyOptions, type PanZoomHandle } from '@/components/ui/Pa
 const [VX, VY, VW, VH] = mapLayer.viewBox;
 export const MAP_W = 2400;
 export const MAP_H = Math.round((MAP_W * VH) / VW);
+
+/** Centro de um território em frações do mapa (0 = oeste/norte, 1 = leste/sul). */
+export function territoryCenter(id: TerritoryId): { fx: number; fy: number } | null {
+  const shape = mapLayer.territories.find((t) => t.id === id);
+  if (!shape) return null;
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  if (shape.shape === 'circle') {
+    x0 = x1 = shape.cx;
+    y0 = y1 = shape.cy;
+  } else {
+    const n = shape.d.match(/-?\d*\.?\d+/g)?.map(Number) ?? [];
+    for (let i = 0; i + 1 < n.length; i += 2) {
+      x0 = Math.min(x0, n[i]); x1 = Math.max(x1, n[i]);
+      y0 = Math.min(y0, n[i + 1]); y1 = Math.max(y1, n[i + 1]);
+    }
+  }
+  return { fx: ((x0 + x1) / 2 - VX) / VW, fy: ((y0 + y1) / 2 - VY) / VH };
+}
 const K = MAP_W / VW;
 
 export interface MapCanvasHandle {

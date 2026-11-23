@@ -21,6 +21,7 @@ export function CharacterOverlay({
   onTerritory,
   mapHref = true,
   backdrop = true,
+  side = 'left',
 }: {
   id: string | null;
   onClose: () => void;
@@ -28,6 +29,8 @@ export function CharacterOverlay({
   onTerritory?: (id: TerritoryId) => void;
   mapHref?: boolean;
   backdrop?: boolean;
+  /** lado da tela onde o card abre */
+  side?: 'left' | 'right';
 }) {
   const world = useWorld();
   const c = id ? world.characters.get(id) : undefined;
@@ -60,11 +63,11 @@ export function CharacterOverlay({
           key="card"
           role="dialog"
           aria-label={c.nome}
-          initial={{ opacity: 0, x: -40, scale: 0.98 }}
+          initial={{ opacity: 0, x: side === 'left' ? -40 : 40, scale: 0.98 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: -30, scale: 0.98 }}
+          exit={{ opacity: 0, x: side === 'left' ? -30 : 30, scale: 0.98 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="panel fixed bottom-3 left-3 top-[calc(var(--header-h)+12px)] z-30 flex w-[min(560px,calc(100vw-24px))] flex-col overflow-hidden rounded-2xl"
+          className={`panel fixed bottom-3 ${side === 'left' ? 'left-3' : 'right-3'} top-[calc(var(--header-h)+12px)] z-30 flex w-[min(560px,calc(100vw-24px))] flex-col overflow-hidden rounded-2xl`}
         >
           <button
             type="button"

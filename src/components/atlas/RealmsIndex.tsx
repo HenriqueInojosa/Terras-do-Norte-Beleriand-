@@ -51,11 +51,20 @@ export function RealmsIndex() {
                         className="group panel block overflow-hidden rounded-2xl transition-[transform,border-color] duration-500 hover:-translate-y-1 hover:border-gold-400/50"
                       >
                         <div className="relative h-40 overflow-hidden">
-                          <MiniMap
-                            id={t.id}
-                            veiled={t.velado}
-                            className="h-full w-full scale-105 transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-115"
-                          />
+                          {t.imagem ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={t.imagem}
+                              alt=""
+                              className="h-full w-full scale-105 object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-115"
+                            />
+                          ) : (
+                            <MiniMap
+                              id={t.id}
+                              veiled={t.velado}
+                              className="h-full w-full scale-105 transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-115"
+                            />
+                          )}
                           <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/10 to-transparent" />
                           <span className="chip absolute left-4 top-4 bg-ink-950/60 backdrop-blur">{t.velado ? 'Oculto' : TYPE_LABEL[t.tipo]}</span>
                         </div>
