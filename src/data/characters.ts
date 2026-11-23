@@ -410,6 +410,40 @@ export const characters: Character[] = [
 
   // ——— Outros ———
   {
+    id: 'cirdan',
+    nome: [f('Círdan', 'qs-10')],
+    titulos: [f('o Armador', 'qs-10'), f('Senhor das Falas', 'qs-10')],
+    povo: 'teleri',
+    pais: [],
+    conjuges: [],
+    biografia: [
+      f('Senhor dos Falathrim, os Elfos do litoral, que ficaram na Terra-média por amor ao mar. Governava as [[falas|Falas]] a partir dos portos de Brithombar e Eglarest.', 'qs-10'),
+    ],
+    revelado: 'qs-10',
+  },
+  {
+    id: 'eol',
+    nome: [f('Eöl', 'qs-16')],
+    titulos: [f('o Elfo Escuro', 'qs-16')],
+    povo: 'sindar',
+    pais: [],
+    conjuges: [],
+    biografia: [
+      f('Elfo solitário, parente de [[thingol|Thingol]], que vivia na floresta de [[nan-elmoth|Nan Elmoth]]. Não gostava dos Noldor e era amigo dos Anões, com quem aprendeu a trabalhar os metais.', 'qs-16'),
+    ],
+    revelado: 'qs-16',
+  },
+  {
+    id: 'azaghal',
+    nome: [f('Azaghâl', 'qs-20')],
+    titulos: [f('Senhor de Belegost', 'qs-20')],
+    povo: 'anoes',
+    pais: [],
+    conjuges: [],
+    biografia: [f('Senhor dos Anões de [[belegost|Belegost]].', 'qs-20')],
+    revelado: 'qs-20',
+  },
+  {
     id: 'morgoth',
     nome: [f('Melkor', 'ainulindale'), f('Morgoth', 'qs-9')],
     titulos: [f('Senhor de Angband', 'qs-9')],

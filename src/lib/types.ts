@@ -31,11 +31,25 @@ export type TerritoryId =
   | 'aglon'
   | 'thargelion'
   | 'angband'
-  | 'gondolin';
+  | 'gondolin'
+  | 'doriath'
+  | 'nargothrond'
+  | 'tol-sirion'
+  | 'falas'
+  | 'brethil'
+  | 'dimbar'
+  | 'nan-dungortheb'
+  | 'beleriand-leste'
+  | 'nan-elmoth'
+  | 'estolad'
+  | 'ossiriand'
+  | 'taur-im-duinath'
+  | 'nogrod'
+  | 'belegost';
 
 export type CharacterId = string;
 export type HouseId = 'finwe' | 'thingol';
-export type PeopleId = 'noldor' | 'sindar' | 'teleri' | 'vanyar' | 'maiar' | 'ainur' | 'homens';
+export type PeopleId = 'noldor' | 'sindar' | 'teleri' | 'vanyar' | 'laiquendi' | 'maiar' | 'ainur' | 'homens' | 'anoes';
 
 export type TerritoryType = 'reino' | 'regiao' | 'fortaleza' | 'passagem' | 'territorio';
 

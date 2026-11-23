@@ -33,6 +33,16 @@ export const relationships: Relationship[] = [
   rel('governa', c('curufin'), t('aglon'), 'qs-14'),
   rel('governa', c('caranthir'), t('thargelion'), 'qs-14'),
   rel('governa', c('morgoth'), t('angband'), 'qs-9'),
+  rel('governa', c('thingol'), t('doriath'), 'qs-10'),
+  rel('governa', c('melian'), t('doriath'), 'qs-10'),
+  rel('governa', c('finrod'), t('nargothrond'), 'qs-13'),
+  rel('governa', c('finrod'), t('tol-sirion'), 'qs-13'),
+  rel('governa', c('orodreth'), t('tol-sirion'), 'qs-15', { nota: 'Finrod deixou a torre de Minas Tirith aos cuidados de Orodreth.' }),
+  rel('governa', c('cirdan'), t('falas'), 'qs-10'),
+  rel('governa', c('amrod'), t('beleriand-leste'), 'qs-14'),
+  rel('governa', c('amras'), t('beleriand-leste'), 'qs-14'),
+  rel('governa', c('eol'), t('nan-elmoth'), 'qs-16'),
+  rel('governa', c('azaghal'), t('belegost'), 'qs-20'),
 
   // Vassalagem e soberania
   rel('vassalo-de', c('fingon'), c('fingolfin'), 'qs-14', { nota: 'Dor-lómin é parte de Hithlum, entregue a Fingon pelo pai.' }),

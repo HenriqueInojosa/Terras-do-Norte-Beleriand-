@@ -21,6 +21,7 @@ const MORE = [
 
 export function SiteHeader() {
   const pathname = usePathname() || '/';
+  const overMap = pathname === '/';
   const [moreOpen, setMoreOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
@@ -48,7 +49,14 @@ export function SiteHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-40 h-[var(--header-h)]">
-      <div className="absolute inset-0 border-b border-gold-500/20 bg-gradient-to-b from-ink-950/95 to-ink-900/80 backdrop-blur-md" />
+      {/* No Atlas o cabeçalho flutua sobre o mapa em tela cheia: degradê sem desfoque (o desfoque travava o mapa) */}
+      <div
+        className={`pointer-events-none absolute inset-0 ${
+          overMap
+            ? 'h-[calc(100%+28px)] bg-gradient-to-b from-ink-950/95 via-ink-950/70 to-transparent'
+            : 'border-b border-gold-500/20 bg-gradient-to-b from-ink-950/95 to-ink-900/80 backdrop-blur-md'
+        }`}
+      />
       <div className="relative mx-auto flex h-full max-w-[1600px] items-center gap-1.5 px-3 sm:gap-3 md:gap-6 md:px-6">
         <Link href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="Atlas de Beleriand, início">
           <span className="hidden sm:block"><Emblem /></span>

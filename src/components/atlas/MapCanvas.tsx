@@ -99,7 +99,8 @@ export const MapCanvas = forwardRef<MapCanvasHandle, Props>(function MapCanvas(
       ref={camera}
       width={MAP_W}
       height={MAP_H}
-      minRel={0.8}
+      initial="cover"
+      coverAlign="top"
       maxRel={8}
       onZoomChange={(rel) => setLod((prev) => (lodForZoom(rel) === prev ? prev : lodForZoom(rel)))}
       className={className}
@@ -114,7 +115,6 @@ export const MapCanvas = forwardRef<MapCanvasHandle, Props>(function MapCanvas(
         height={MAP_H}
         draggable={false}
         className="pointer-events-none absolute inset-0 h-full w-full"
-        style={{ borderRadius: 6, boxShadow: '0 40px 120px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(184,146,63,.25)' }}
       />
       <svg
         viewBox={mapLayer.viewBox.join(' ')}

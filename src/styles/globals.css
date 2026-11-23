@@ -214,52 +214,39 @@ a {
   }
 }
 
-/* Rótulos do mapa (classes vindas do SVG estilizado) */
+/* Rótulos do mapa à pena (classes de assets/map/bico-de-pena/beleriand-rotulos.svg) */
 .map-labels text {
   text-anchor: middle;
   dominant-baseline: central;
   paint-order: stroke;
-  stroke: #efe3c6;
-  stroke-width: 0.9px;
+  stroke: #f0e4c6;
+  stroke-width: 1px;
   stroke-linejoin: round;
   pointer-events: none;
-  transition: opacity 0.5s var(--ease-elven);
+  transition: opacity 0.5s var(--ease-elven), fill 0.4s var(--ease-elven);
 }
-.map-labels .reg { font-family: 'Cinzel', serif; font-weight: 600; fill: #3a2716; }
-.map-labels .reg.xl { font-size: 9.2px; letter-spacing: 4.2px; }
-.map-labels .reg.l { font-size: 6.6px; letter-spacing: 2.4px; }
-.map-labels .reg.m { font-size: 5.3px; letter-spacing: 1.6px; }
-.map-labels .reg.s { font-size: 4.2px; letter-spacing: 1.2px; }
-.map-labels .reg.xs { font-size: 3.6px; letter-spacing: 0.8px; }
-.map-labels .two .sub { font-family: 'IM Fell English', serif; font-style: italic; font-weight: 400; letter-spacing: 0.3px; font-size: 0.78em; }
-.map-labels .sea { font-family: 'Cinzel', serif; font-weight: 500; font-size: 15px; letter-spacing: 9px; fill: #e6c97a; stroke: none; opacity: 0.92; }
-.map-labels .frs { font-family: 'IM Fell English SC', serif; fill: #f3ead0; stroke: #1f3018; stroke-width: 1.1px; }
-.map-labels .frs.xl { font-size: 11px; letter-spacing: 4px; }
-.map-labels .frs.l { font-size: 10px; letter-spacing: 2.6px; }
-.map-labels .frs.s { font-size: 4.6px; letter-spacing: 0.4px; }
-.map-labels .doriath { fill: #f6e3a1; }
-.map-labels .mtn { font-family: 'IM Fell English', serif; font-style: italic; font-size: 4.8px; fill: #5e2416; letter-spacing: 0.3px; }
-.map-labels .mtn.big { font-family: 'Cinzel', serif; font-style: normal; font-weight: 700; font-size: 8px; letter-spacing: 5px; fill: #efe3c6; stroke: #1c1612; stroke-width: 1.2px; }
-.map-labels .mtn.big .sub { fill: #efe3c6; letter-spacing: 1px; }
-.map-labels .mtn.dark { font-size: 5.4px; fill: #f3d9b0; stroke: #2a0e08; stroke-width: 1px; }
-.map-labels .riv { font-family: 'IM Fell English', serif; font-style: italic; font-size: 4.2px; fill: #1d4563; letter-spacing: 0.3px; }
-.map-labels .riv.s { font-size: 3.8px; }
-.map-labels .wat { font-family: 'IM Fell English', serif; font-style: italic; font-size: 3.9px; fill: #1d4563; }
-.map-labels .city { font-family: 'IM Fell English SC', serif; font-size: 5.6px; fill: #24160c; letter-spacing: 0.3px; }
-.map-labels .city.evil { font-family: 'Cinzel', serif; font-weight: 700; font-size: 6.2px; letter-spacing: 2.5px; fill: #f2c9a0; stroke: #2a0e08; stroke-width: 1.2px; }
-.map-labels .minor { font-family: 'IM Fell English', serif; font-style: italic; font-size: 3.9px; fill: #3a2716; }
-.map-labels .titulo,
-.map-labels .subtitulo {
-  dominant-baseline: auto;
-}
-.map-labels .titulo { font-family: 'Cinzel Decorative', 'Cinzel', serif; font-weight: 900; font-size: 25px; letter-spacing: 7px; fill: url(#ouro); stroke: #2a1d10; stroke-width: 0.45px; }
-.map-labels .subtitulo { font-family: 'IM Fell English', serif; font-style: italic; font-size: 6.4px; fill: #3a2716; letter-spacing: 0.8px; stroke: none; }
+.map-labels .reg { font-family: 'IM Fell English SC', serif; fill: #8e2b1c; letter-spacing: 1.6px; }
+.map-labels .reg.xl { font-size: 9.5px; letter-spacing: 4.5px; }
+.map-labels .reg.l { font-size: 7px; letter-spacing: 2.8px; }
+.map-labels .reg.m { font-size: 5.6px; letter-spacing: 1.8px; }
+.map-labels .reg.s { font-size: 4.6px; letter-spacing: 1.2px; }
+.map-labels .reg.xs { font-size: 3.8px; }
+.map-labels .mar { font-family: 'Uncial Antiqua', serif; font-size: 14px; letter-spacing: 8px; fill: #2a1f16; opacity: 0.8; }
+.map-labels .mtn { font-family: 'IM Fell English', serif; font-style: italic; font-size: 4.8px; fill: #2a1f16; }
+.map-labels .mtn.big { font-family: 'IM Fell English SC', serif; font-style: normal; font-size: 8px; letter-spacing: 4px; }
+.map-labels .mtn.dark { font-size: 5.2px; }
+.map-labels .rio { font-family: 'IM Fell English', serif; font-style: italic; font-size: 4px; fill: #2d4a5e; }
+.map-labels .rio.s { font-size: 3.6px; }
+.map-labels .lugar { font-family: 'IM Fell English', serif; font-size: 5px; fill: #2a1f16; }
+.map-labels .lugar.mal { font-family: 'IM Fell English SC', serif; font-size: 6px; letter-spacing: 2px; fill: #5a1408; }
+.map-labels .menor { font-family: 'IM Fell English', serif; font-style: italic; font-size: 4px; fill: #2a1f16; }
 
 .map-labels .is-active {
-  fill: #6a3a0c;
+  fill: #c0391f;
 }
-.map-labels .city.evil.is-active {
-  fill: #ffd9b0;
+.map-labels .lugar.is-active,
+.map-labels .menor.is-active {
+  fill: #8e2b1c;
 }
 
 /* Nível de detalhe por zoom: rótulos menores só aparecem de perto */
