@@ -65,3 +65,13 @@ Os arquivos ficam em `assets/map/bico-de-pena/`:
 A arte vai pronta em `public/maps/beleriand-base.webp` (2400px) e `@2x` (4800px, carregada só ao aproximar no desktop),
 sem nenhum nome escrito. Depois de trocar as regiões ou os rótulos, rode `npm run map` para gerar de novo
 `src/data/generated/map-layer.ts`.
+
+### Dois desenhos do mapa
+
+O Atlas tem dois desenhos e usa um de cada vez, escolhido em `src/data/map-style.ts` (`MAP_STYLE`):
+
+- `filme` (o atual): tinta sépia sobre pergaminho, no estilo dos mapas dos filmes, em `assets/map/filme/`
+  e `public/maps/filme/`. A arte sai de `assets/map/filme/fonte/filme.py` (tinta) + `compor.py` (papel);
+  os nomes saem de `fonte/rotulos.py`, que parte dos rótulos do mapa à pena. Depois de mudar, rode
+  `python3 scripts/import_map.py filme`.
+- `bico-de-pena` (o anterior): continua intacto. Para voltar a ele, troque `MAP_STYLE` para `'bico-de-pena'`.

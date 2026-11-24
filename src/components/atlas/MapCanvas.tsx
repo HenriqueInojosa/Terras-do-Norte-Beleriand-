@@ -2,7 +2,7 @@
 
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { chapterIndex } from '@/data/chapters';
-import { mapLayer } from '@/data/generated/map-layer';
+import { MAP_ART, MAP_ART_2X, MAP_STYLE, mapLayer } from '@/data/map-style';
 import { GONDOLIN_MARKER_REVEAL, labelLod, labelPartReveal, labelReveal, lodForZoom } from '@/data/map-regions';
 import type { TerritoryId } from '@/lib/types';
 import type { World } from '@/lib/world';
@@ -59,7 +59,7 @@ export const MapCanvas = forwardRef<MapCanvasHandle, Props>(function MapCanvas(
     // no celular a versão 4800px pesa demais na memória; fica a de 2400px
     if (lod === 0 || hiRes || window.innerWidth < 768) return;
     const img = new Image();
-    img.src = '/maps/beleriand-base@2x.webp';
+    img.src = MAP_ART_2X;
     img.decode().then(() => setHiRes(true)).catch(() => setHiRes(true));
   }, [lod, hiRes]);
   const [hover, setHover] = useState<TerritoryId | null>(null);
@@ -126,7 +126,7 @@ export const MapCanvas = forwardRef<MapCanvasHandle, Props>(function MapCanvas(
       {/* Arte do mapa como imagem: leve para o zoom */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={hiRes ? '/maps/beleriand-base@2x.webp' : '/maps/beleriand-base.webp'}
+        src={hiRes ? MAP_ART_2X : MAP_ART}
         decoding="async"
         alt="Mapa de Beleriand"
         width={MAP_W}
@@ -194,7 +194,7 @@ export const MapCanvas = forwardRef<MapCanvasHandle, Props>(function MapCanvas(
           })}
         </g>
 
-        <g className="map-labels" data-lod={lod}>
+        <g className={`map-labels estilo-${MAP_STYLE}`} data-lod={lod}>
           {visibleLabels.map((l) => {
             const active = l.territory && (l.territory === selected || l.territory === hover || relatedSet.has(l.territory));
             return (

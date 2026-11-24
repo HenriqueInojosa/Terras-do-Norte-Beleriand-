@@ -9,6 +9,10 @@ export const labelReveal: Record<string, ChapterId> = {
   'lbl-estolad': 'qs-17',
   'lbl-arvernien': 'qs-24',
   'lbl-nimbrethil': 'qs-24',
+  // só no mapa no estilo dos filmes
+  'lbl-menegroth': 'qs-10',
+  'lbl-taur-nu-fuin': 'qs-18',
+  'lbl-tol-galen': 'qs-19',
 };
 
 /** Partes de rótulos (linhas) reveladas depois do resto. Índice da linha → capítulo. */

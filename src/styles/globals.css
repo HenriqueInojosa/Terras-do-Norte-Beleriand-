@@ -241,6 +241,35 @@ a {
 .map-labels .lugar.mal { font-family: 'IM Fell English SC', serif; font-size: 6px; letter-spacing: 2px; fill: #5a1408; }
 .map-labels .menor { font-family: 'IM Fell English', serif; font-style: italic; font-size: 4px; fill: #2a1f16; }
 
+/* Rótulos do mapa no estilo dos filmes: tudo na mesma tinta sépia, sem vermelho */
+.map-labels.estilo-filme text { stroke: rgba(234, 214, 170, 0.85); stroke-width: 1.3px; }
+.map-labels.estilo-filme .reg,
+.map-labels.estilo-filme .mar,
+.map-labels.estilo-filme .mtn,
+.map-labels.estilo-filme .lugar,
+.map-labels.estilo-filme .lugar.mal,
+.map-labels.estilo-filme .menor,
+.map-labels.estilo-filme .rio { fill: #34200f; }
+.map-labels.estilo-filme .reg.xl,
+.map-labels.estilo-filme .reg.l,
+.map-labels.estilo-filme .mar { stroke-width: 2.4px; }
+.map-labels.estilo-filme .reg.xl { font-size: 9.5px; letter-spacing: 5px; }
+.map-labels.estilo-filme .reg.l { font-size: 6.6px; letter-spacing: 3px; }
+.map-labels.estilo-filme .reg.m { font-size: 5px; letter-spacing: 1.8px; }
+.map-labels.estilo-filme .reg.s { font-size: 4px; letter-spacing: 1.1px; }
+.map-labels.estilo-filme .mar { font-family: 'IM Fell English SC', serif; letter-spacing: 10px; opacity: 0.85; }
+.map-labels.estilo-filme .mtn,
+.map-labels.estilo-filme .rio,
+.map-labels.estilo-filme .menor { font-family: 'Almendra', 'IM Fell English', serif; font-style: italic; }
+.map-labels.estilo-filme .mtn { font-size: 3.8px; }
+.map-labels.estilo-filme .mtn.big { font-family: 'IM Fell English SC', serif; font-style: normal; font-size: 6px; letter-spacing: 4px; }
+.map-labels.estilo-filme .rio { font-size: 3.4px; }
+.map-labels.estilo-filme .lugar { font-family: 'Almendra', 'IM Fell English', serif; font-size: 3.9px; }
+.map-labels.estilo-filme .lugar.mal { font-family: 'IM Fell English SC', serif; font-size: 5px; letter-spacing: 1.6px; }
+.map-labels.estilo-filme .is-active,
+.map-labels.estilo-filme .lugar.is-active,
+.map-labels.estilo-filme .menor.is-active { fill: #8e2b1c; }
+
 .map-labels .is-active {
   fill: #c0391f;
 }

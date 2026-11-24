@@ -1,0 +1,11 @@
+const { chromium } = require('playwright'); const fs = require('fs');
+const [,, svgFile, out, width] = process.argv; const Wd = +width;
+const ff = (n, f, st) => `@font-face{font-family:'${n}';font-style:${st||'normal'};src:url(data:font/woff2;base64,${fs.readFileSync('../f/'+f).toString('base64')}) format('woff2')}`;
+const css = ff('Uncial Antiqua','uncial.woff2') + ff('IM Fell English','fell.woff2') + ff('IM Fell English','fellit.woff2','italic') + ff('Almendra SC','almsc.woff2') + ff('Almendra','alm.woff2') + ff('Almendra','almit.woff2','italic') + ff('IM Fell English SC','fellsc.woff2') + ff('Almendra Display','almdisp.woff2');
+let svg = fs.readFileSync(svgFile, 'utf8'); const vb = svg.match(/viewBox="([^"]+)"/)[1].split(' ').map(Number);
+const Hh = Math.round(Wd * vb[3] / vb[2]);
+svg = svg.replace('<svg ', `<svg width="${Wd}" height="${Hh}" `);
+(async () => { const b = await chromium.launch(); const p = await b.newPage({ viewport: { width: Wd, height: Hh } });
+  await p.setContent(`<html><head><style>${css} body{margin:0;background:#fff}</style></head><body>${svg}</body></html>`);
+  await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(300);
+  await p.screenshot({ path: out, fullPage: false }); await b.close(); console.log(Wd, Hh); })();

@@ -3,6 +3,7 @@ import { chapters, chapterIndex } from '@/data/chapters';
 import { characters } from '@/data/characters';
 import { houses } from '@/data/genealogies';
 import { mapLayer } from '@/data/generated/map-layer';
+import { mapLayer as mapLayerFilme } from '@/data/generated/map-layer-filme';
 import { relationships } from '@/data/relationships';
 import { territories } from '@/data/territories';
 import { timeline } from '@/data/timeline';
@@ -79,6 +80,8 @@ describe('integridade dos dados', () => {
     const shapes = new Set<string>(mapLayer.territories.map((s) => s.id));
     for (const t of territories) expect(shapes.has(t.id), t.id).toBe(true);
     for (const s of shapes) expect(terrIds.has(s), s).toBe(true);
+    // os dois desenhos do mapa têm as mesmas áreas clicáveis
+    expect(new Set(mapLayerFilme.territories.map((s) => s.id))).toEqual(shapes);
   });
 
   it('árvores e linha do tempo apontam para quem existe', () => {

@@ -1,4 +1,6 @@
-"""Importa o mapa à pena (assets/map/bico-de-pena/) para o app.
+"""Importa um estilo de mapa (assets/map/<estilo>/) para o app.
+
+uso: python3 scripts/import_map.py [bico-de-pena|filme]   (padrão: bico-de-pena)
 
 Entrada: beleriand-regioes.svg (grupo "territorios") e beleriand-rotulos.svg
 (grupo "labels"), no mesmo viewBox da arte. A arte já vem pronta em WebP
@@ -8,13 +10,15 @@ são desenhados pelo app por cima, para respeitar spoilers e o nível de zoom.
 Saída: src/data/generated/map-layer.ts
 """
 import json
+import sys
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "assets/map/bico-de-pena"
-OUT = ROOT / "src/data/generated/map-layer.ts"
+STYLE = sys.argv[1] if len(sys.argv) > 1 else "bico-de-pena"
+SRC = ROOT / "assets/map" / STYLE
+OUT = ROOT / "src/data/generated" / ("map-layer.ts" if STYLE == "bico-de-pena" else f"map-layer-{STYLE}.ts")
 NS = "http://www.w3.org/2000/svg"
 
 
@@ -67,7 +71,7 @@ for t in rotulos.iter(q("text")):
 
 layer = {"viewBox": view_box, "territories": territories, "labels": labels, "titles": [], "gondolinMarker": ""}
 OUT.write_text(
-    "// Gerado por scripts/import_map.py a partir de assets/map/bico-de-pena/. Nao editar.\n"
+    f"// Gerado por scripts/import_map.py a partir de assets/map/{STYLE}/. Nao editar.\n"
     "import type { MapLayer } from '@/lib/types';\n\n"
     f"export const mapLayer: MapLayer = {json.dumps(layer, ensure_ascii=False, indent=1)};\n"
 )

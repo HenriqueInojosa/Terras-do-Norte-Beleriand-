@@ -1,6 +1,6 @@
 'use client';
 
-import { mapLayer } from '@/data/generated/map-layer';
+import { MAP_ART, mapLayer } from '@/data/map-style';
 import type { TerritoryId } from '@/lib/types';
 
 const [VX, VY, VW, VH] = mapLayer.viewBox;
@@ -39,7 +39,7 @@ export function MiniMap({
   const hl = { fill: veiled ? '#efe6cf' : '#d8b25e', fillOpacity: veiled ? 0.6 : 0.3, stroke: '#fff0c2', strokeWidth: size / 160 };
   return (
     <svg viewBox={vb} preserveAspectRatio="xMidYMid slice" className={className} aria-hidden>
-      <image href="/maps/beleriand-base.webp" x={VX} y={VY} width={VW} height={VH} />
+      <image href={MAP_ART} x={VX} y={VY} width={VW} height={VH} />
       {s.shape === 'path' ? (
         <path d={s.d} {...hl} strokeLinejoin="round" style={veiled ? { filter: 'blur(1.5px)' } : undefined} />
       ) : (
