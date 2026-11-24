@@ -48,8 +48,8 @@ export type TerritoryId =
   | 'belegost';
 
 export type CharacterId = string;
-export type HouseId = 'finwe' | 'thingol';
-export type PeopleId = 'noldor' | 'sindar' | 'teleri' | 'vanyar' | 'laiquendi' | 'maiar' | 'ainur' | 'homens' | 'anoes';
+export type HouseId = 'finwe' | 'thingol' | 'beor' | 'haleth' | 'hador';
+export type PeopleId = 'noldor' | 'sindar' | 'teleri' | 'vanyar' | 'laiquendi' | 'maiar' | 'ainur' | 'homens' | 'orientais' | 'anoes';
 
 export type TerritoryType = 'reino' | 'regiao' | 'fortaleza' | 'passagem' | 'territorio';
 

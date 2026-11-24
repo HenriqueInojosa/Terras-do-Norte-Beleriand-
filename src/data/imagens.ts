@@ -143,6 +143,54 @@ export const retratos: Partial<Record<CharacterId, Imagem>> = {
     src: '/portraits/azaghal.webp',
     credito: { autor: 'Jenny Dolfen', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Jenny_Dolfen_-_Azaghal.jpg', obra: 'Azaghal', alterada: true },
   },
+  beor: {
+    src: '/portraits/beor.webp',
+    credito: { autor: 'ForeverMedhok', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:ForeverMedhok_-_Beor.png', obra: 'Beor', alterada: true },
+  },
+  bregolas: {
+    src: '/portraits/bregolas.webp',
+    credito: { autor: 'Peter Xavier Price', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Peter_Xavier_Price_-_Bregolas.jpg', obra: 'Bregolas', alterada: true },
+  },
+  barahir: {
+    src: '/portraits/barahir.webp',
+    credito: { autor: 'Marya Filatova', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Marya_Filatova_-_Rescue_-_Finrod_and_Barahir.jpg', obra: 'Rescue - Finrod and Barahir', alterada: true },
+  },
+  beren: {
+    src: '/portraits/beren.webp',
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Beren.jpg', obra: 'Beren', alterada: true },
+  },
+  morwen: {
+    src: '/portraits/morwen.webp',
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Morwen.jpg', obra: 'Morwen', alterada: true },
+  },
+  hador: {
+    src: '/portraits/hador.webp',
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Hador_the_Goldenhaired.jpg', obra: 'Hador the Goldenhaired', alterada: true },
+  },
+  galdor: {
+    src: '/portraits/galdor.webp',
+    credito: { autor: 'Peter Xavier Price', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Peter_Xavier_Price_-_Galdor_the_Tall.jpg', obra: 'Galdor the Tall', alterada: true },
+  },
+  hurin: {
+    src: '/portraits/hurin.webp',
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Hurin_Thalion.jpg', obra: 'Hurin Thalion', alterada: true },
+  },
+  turin: {
+    src: '/portraits/turin.webp',
+    credito: { autor: 'Kimberly', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Kimberly_-_Turin.jpg', obra: 'Turin', alterada: true },
+  },
+  tuor: {
+    src: '/portraits/tuor.webp',
+    credito: { autor: 'Līga Kļaviņa', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:L%C4%ABga_K%C4%BCavi%C5%86a_-_Tuor.jpg', obra: 'Tuor', alterada: true },
+  },
+  haleth: {
+    src: '/portraits/haleth.webp',
+    credito: { autor: 'Alystraea', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Alystraea_-_Haleth.jpg', obra: 'Haleth', alterada: true },
+  },
+  bor: {
+    src: '/portraits/bor.webp',
+    credito: { autor: 'Helena Stepanova', licenca: FAN_ART, fonte: 'https://tolkiengateway.net/wiki/File:Helena_Stepanova_-_Bor_with_his_sons.jpg', obra: 'Bor with his sons', alterada: true },
+  },
 };
 
 export const paisagens: Partial<Record<TerritoryId, Imagem>> = {

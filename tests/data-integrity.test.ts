@@ -129,6 +129,27 @@ describe('controle de spoilers', () => {
     expect(w17.territories.has('estolad')).toBe(true);
   });
 
+  it('os Homens respeitam a leitura', () => {
+    const w14 = buildWorld({ chapter: 'qs-14', showComplementar: false });
+    for (const id of ['beor', 'barahir', 'beren', 'hador', 'hurin', 'turin', 'tuor', 'haleth', 'bor', 'ulfang']) expect(w14.characters.has(id), id).toBe(false);
+    expect(w14.houses.some((h) => h.id === 'hador')).toBe(false);
+
+    const w17 = buildWorld({ chapter: 'qs-17', showComplementar: false });
+    expect(w17.characters.has('hador')).toBe(true);
+    expect(w17.houses.map((h) => h.id)).toEqual(expect.arrayContaining(['beor', 'haleth', 'hador']));
+    expect(w17.relationships.some((r) => r.id === 'hador-governa-dor-lomin')).toBe(true);
+    expect(w17.relationships.some((r) => r.id === 'hurin-governa-dor-lomin')).toBe(false);
+    expect(w17.characters.has('bor')).toBe(false);
+    expect(w17.characters.has('brandir')).toBe(false);
+    expect(w17.characters.get('beren')?.conjuges ?? []).toHaveLength(0);
+    const texto17 = [...w17.characters.values()].flatMap((c) => c.biografia.map((b) => b.valor)).join(' ');
+    for (const word of ['Bragollach', 'Nirnaeth', 'Silmaril da coroa', 'Turambar']) expect(texto17).not.toContain(word);
+
+    const w19 = buildWorld({ chapter: 'qs-19', showComplementar: false });
+    expect(w19.characters.get('beren')?.conjuges.map((x) => x.valor)).toContain('luthien');
+    expect(w19.characters.get('luthien')?.conjuges.map((x) => x.valor)).toContain('beren');
+  });
+
   it('link para território velado vira texto neutro', () => {
     const w = buildWorld({ chapter: 'qs-14', showComplementar: false });
     const seg = parseRich(w, 'Ele foi para [[gondolin|Gondolin]].');
