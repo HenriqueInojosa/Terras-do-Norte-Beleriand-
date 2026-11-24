@@ -18,6 +18,10 @@ const PALETTES: Record<string, Palette> = {
   morgoth: { field: '#120c0a', ring: '#7a2a18', star: '#c0643a', ink: '#e8a27a' },
   anoes: { field: '#2a2420', ring: '#b8a27a', star: '#d9c8a4', ink: '#f0e4c8' },
   sindar: { field: '#1e2a28', ring: '#a9b8b0', star: '#d8e2dc', ink: '#e8f0ec' },
+  beor: { field: '#2c2416', ring: '#c9a86a', star: '#e8d2a0', ink: '#f4e6c4' },
+  haleth: { field: '#1f2a18', ring: '#a8bf8a', star: '#d6e4c0', ink: '#ecf3df' },
+  hador: { field: '#3a2c0c', ring: '#e8c15a', star: '#f8dc8a', ink: '#fff0c4' },
+  orientais: { field: '#2a1a16', ring: '#b07a5a', star: '#d8a888', ink: '#f2d6c2' },
 };
 
 export function branchOf(world: World, c: ResolvedCharacter): keyof typeof PALETTES {
@@ -25,6 +29,8 @@ export function branchOf(world: World, c: ResolvedCharacter): keyof typeof PALET
   if (c.id === 'melian') return 'melian';
   if (c.povo === 'teleri') return 'teleri';
   if (c.casa === 'thingol') return 'thingol';
+  if (c.casa === 'beor' || c.casa === 'haleth' || c.casa === 'hador') return c.casa;
+  if (c.povo === 'orientais') return 'orientais';
   if (!c.casa) {
     if (c.povo === 'anoes') return 'anoes';
     if (c.povo === 'sindar') return 'sindar';

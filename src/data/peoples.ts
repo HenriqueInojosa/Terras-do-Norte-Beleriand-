@@ -9,5 +9,6 @@ export const peoples: People[] = [
   { id: 'anoes', nome: 'Anões', descricao: 'Os Naugrim, feitos por Aulë. Em Beleriand, moravam nas cidades de Nogrod e Belegost, nas Montanhas Azuis.', revelado: 'qs-2' },
   { id: 'maiar', nome: 'Maiar', descricao: 'Espíritos da mesma ordem dos Valar, porém de grau menor.', revelado: 'valaquenta' },
   { id: 'ainur', nome: 'Ainur', descricao: 'Os Sagrados, primeiros seres criados por Ilúvatar.', revelado: 'ainulindale' },
-  { id: 'homens', nome: 'Homens', descricao: 'Os Seguidores, segundos Filhos de Ilúvatar.', revelado: 'qs-12' },
+  { id: 'homens', nome: 'Homens', descricao: 'Os Seguidores, segundos Filhos de Ilúvatar. Em Beleriand, os Edain, amigos dos Elfos, formavam três casas: a de Bëor, a de Haleth e a de Hador.', revelado: 'qs-12' },
+  { id: 'orientais', nome: 'Orientais', descricao: 'Homens de pele morena que vieram do leste para Beleriand depois da Dagor Bragollach.', revelado: 'qs-18' },
 ];
